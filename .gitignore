@@ -1,0 +1,15 @@
+**/__pycache__/
+
+# Ignore generated figures and json files, but keep the directories where they are stored
+model_code/figures/*
+!model_code/figures/.gitkeep
+
+model_code/results/*
+!model_code/results/.gitkeep
+
+# Ignore generated plots in data directory
+data/figures/main_paper/*
+!data/figures/main_paper/.gitkeep
+
+data/figures/appendix/*
+!data/figures/appendix/.gitkeep
