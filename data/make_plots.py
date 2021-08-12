@@ -43,20 +43,20 @@ def figure_1():
             "Theoretical Guarantee":
                 [
                     # Non-Parametric Mechanisms
-                    "None",
-                    "Dominantly Truthful",
-                    "Truthful",             
-                    "Strongly Truthful",  
-                    "Strongly Truthful",  
-                    "Strongly Truthful",  
-                    "Strongly Truthful",   
-                    "Helpful Reporting",
+                    r'None',
+                    r'Dominantly Truthful',
+                    r'Truthful',             
+                    r'Strongly Truthful',  
+                    r'Strongly Truthful',  
+                    r'Strongly Truthful',  
+                    r'Strongly Truthful',   
+                    r'Helpful Reporting',
                     # Parametric Mechanisms
-                    "None",
-                    "Strongly Truthful",  
-                    "Strongly Truthful",  
-                    "Strongly Truthful",  
-                    "Strongly Truthful",
+                    r'None',
+                    r'Strongly Truthful',  
+                    r'Strongly Truthful',  
+                    r'Strongly Truthful',  
+                    r'Strongly Truthful',
                 ]
         }
         
@@ -154,7 +154,7 @@ def figure_1():
     
     # order = [0,4,2,3,5,1] # When Informed Truthful is included (6 labels)
     order=[0,4,2,3,1] # When Informed Truthful is not included
-    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order])
+    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], title=r'Theoretical Guarantee')
     
     # label points on the plot
     for x, y, s in zip(data["Robustness"], data["Accuracy"], data["Mechanism"]):
@@ -364,32 +364,32 @@ def figure_D_1a():
                     r'$\Phi$-Div$_{P}^*$: TVD',
                     r'$R^2$'
                     ],
-            "Theoretical Guarantee":
+                "Mechanism Status":
                 [
                     # Non-Parametric Mechanisms
-                    "None",
-                    "Dominantly Truthful",
-                    "Truthful",             
-                    "Strongly Truthful",  
-                    "Strongly Truthful",  
-                    "Strongly Truthful",  
-                    "Strongly Truthful",   
-                    "Helpful Reporting",
+                    r'Established',
+                    r'Established',
+                    r'Established',
+                    r'Established',
+                    r'Established',
+                    r'Established',
+                    r'Established',
+                    r'Established',
                     # Parametric Mechanisms
-                    "None",
-                    "Strongly Truthful",  
-                    "Strongly Truthful",  
-                    "Strongly Truthful",  
-                    "Strongly Truthful",
+                    r'Established',
+                    r'Established',
+                    r'Established',
+                    r'Established',
+                    r'Established',
                     # Extensions
-                    "None",
-                    "None",
-                    "None",
-                    "None",
-                    "None",
-                    "None",
-                    "None",
-                    "None"
+                    r'Novel',
+                    r'Novel',
+                    r'Novel',
+                    r'Novel',
+                    r'Novel',
+                    r'Novel',
+                    r'Novel',
+                    r'Novel'
                 ]
         }
         
@@ -483,7 +483,11 @@ def figure_D_1a():
         
     data["Robustness"] = robustness_list
     
-    _ = sns.scatterplot(x="Robustness", y="Accuracy", palette=guarantee_color_map, data=data)
+    _ = sns.scatterplot(x="Robustness", y="Accuracy", hue="Mechanism Status", data=data)
+    handles, labels = plt.gca().get_legend_handles_labels()
+    
+    order=[0,1] 
+    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order],loc=9,title=r'Mechanism Status')
     
     # label points on the plot
     for x, y, s in zip(data["Robustness"], data["Accuracy"], data["Mechanism"]):
@@ -620,5 +624,3 @@ if __name__ == "__main__":
     #figure_E_1c()
     
     #figure_E_3a()
-    
-    
