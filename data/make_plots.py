@@ -154,7 +154,7 @@ def figure_1():
     
     # order = [0,4,2,3,5,1] # When Informed Truthful is included (6 labels)
     order=[0,4,2,3,1] # When Informed Truthful is not included
-    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], title=r'Theoretical Guarantee')
+    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], title=r'Equilibrium Concept')
     
     # label points on the plot
     for x, y, s in zip(data["Robustness"], data["Accuracy"], data["Mechanism"]):
@@ -367,29 +367,29 @@ def figure_D_1a():
                 "Mechanism Status":
                 [
                     # Non-Parametric Mechanisms
-                    r'Established',
-                    r'Established',
-                    r'Established',
-                    r'Established',
-                    r'Established',
-                    r'Established',
-                    r'Established',
-                    r'Established',
+                    r'Established Mechanism',
+                    r'Established Mechanism',
+                    r'Established Mechanism',
+                    r'Established Mechanism',
+                    r'Established Mechanism',
+                    r'Established Mechanism',
+                    r'Established Mechanism',
+                    r'Established Mechanism',
                     # Parametric Mechanisms
-                    r'Established',
-                    r'Established',
-                    r'Established',
-                    r'Established',
-                    r'Established',
+                    r'Established Mechanism',
+                    r'Established Mechanism',
+                    r'Established Mechanism',
+                    r'Established Mechanism',
+                    r'Established Mechanism',
                     # Extensions
-                    r'Novel',
-                    r'Novel',
-                    r'Novel',
-                    r'Novel',
-                    r'Novel',
-                    r'Novel',
-                    r'Novel',
-                    r'Novel'
+                    r'Novel Mechanism',
+                    r'Novel Mechanism',
+                    r'Novel Mechanism',
+                    r'Novel Mechanism',
+                    r'Novel Mechanism',
+                    r'Novel Mechanism',
+                    r'Novel Mechanism',
+                    r'Novel Mechanism'
                 ]
         }
         
@@ -487,7 +487,7 @@ def figure_D_1a():
     handles, labels = plt.gca().get_legend_handles_labels()
     
     order=[0,1] 
-    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order],loc=9,title=r'Mechanism Status')
+    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order],loc=9)
     
     # label points on the plot
     for x, y, s in zip(data["Robustness"], data["Accuracy"], data["Mechanism"]):
