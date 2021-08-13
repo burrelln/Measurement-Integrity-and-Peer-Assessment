@@ -2,7 +2,7 @@
 
 This repo contains the implementation of an Agent-Based Model (ABM) of peer assessment that was used to conduct the experiments in the paper "Measurement Integrity in Peer Prediction: A Peer Assessment Case Study" (Burrell and Schoenebeck, 2021). 
 
-See the paper (link forthcoming) for more details about the model and the experiments that were conducted.
+See the paper ([arXiv:2108.05521](https://arxiv.org/abs/2108.05521)) for more details about the model and the experiments that were conducted.
 
 To run the simulations, there are a few dependencies: the NetworkX, NumPy, SciPy, and Scikit-learn packages are required for running the experiments and the pandas, Matplotlib, and seaborn packages are required for plotting the results (which is done automatically). All of these packages are included in the [Anaconda Python Distrbution](https://www.anaconda.com/products/individual).
 
