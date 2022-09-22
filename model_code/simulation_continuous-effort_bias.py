@@ -46,7 +46,7 @@ def run_simulation(num_iterations, num_assignments, num_students, mechanism, mec
                     - "MSE_P"
                     - "Phi-DIV_P"
     mechanism_param : str.
-                      Denotes different versions of the same mechanism, e.g. the choice phi divergence used in the phi divergence pairing mechanism.
+                      Denotes different versions of the same mechanism, e.g. the choice of Phi-divergence used in the Phi-divergence pairing mechanism.
                       "0" for mechanisms that do not require such a parameter.
 
     Returns
@@ -92,7 +92,7 @@ def run_simulation(num_iterations, num_assignments, num_students, mechanism, mec
             """
                 
             if mechanism == "BASELINE":
-                mean_squared_error(grader_dict, num_students)
+                mean_squared_error(grader_dict)
                     
             elif mechanism == "DMI":
                 cluster_size = int(mechanism_param)

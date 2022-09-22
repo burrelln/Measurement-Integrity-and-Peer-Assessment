@@ -20,11 +20,16 @@ class Student:
           Denotes effort level for continuous effort settings.
     bias : float.
            Denotes bias when grading submissions.
+    mse : float.
+          Stores the squared error of the student's reports from the ground truth for the assigments they grade.
     payment : int or float (depending on the mechanism).
               Stores payments received over the course of a semester.
     grades : dict.
              Stores the grades assigned over the course of a semester.
              grades = { assignment_number (int): { submission_number (int): score (int 0-10)} }
+    penalty_tasks : dict.
+                    Empty in simulated in experiments.
+                    Used in experiments for real data to store info about submissions that a Student graded that do not meet the necessary criteria to be used as a Submission object in the experiments.
     """
     
     def __init__(self, num, grader_type="active"):
@@ -42,6 +47,8 @@ class Student:
         self.type = grader_type
         self.payment = 0     
         
+        self.mse = 0
+        
         self.bias = norm.rvs(loc=0, scale=1, random_state=None)
     
         lam = 0
@@ -50,6 +57,26 @@ class Student:
         self.lam = lam
         
         self.grades = {}
+        self.penalty_tasks = {}
+        
+    def update_mse(self, gt, report):
+        """
+        Updates the Student's MSE attribute.
+
+        Parameters
+        ----------
+        gt : int 0-10.
+            The ground truth value for the submission being graded.
+        report : int 0-10.
+                 The Student's reported grade for the submission.
+
+        Returns
+        -------
+        None.
+
+        """
+        val = (report - gt)**2
+        self.mse += val
         
     def report(self, signal):
         """
@@ -116,7 +143,7 @@ class StrategicStudent(Student):
         self.bias_correction = bias_correction_sign * bias_correction_magnitude
     
         
-    def report(self, signal):
+    def report(self, signal, prior=7):
         """
         Generates a report for the StrategicStudent object given a signal. Supersedes report() method from Student class.
         
@@ -155,6 +182,7 @@ class StrategicStudent(Student):
                 report = 0
             
         elif sigma == "MERGE":
+            val = int(round(prior))
             projection = {
                     0: 0,
                     1: 3,
@@ -163,29 +191,29 @@ class StrategicStudent(Student):
                     4: 6,
                     5: 6,
                     6: 6,
-                    7: 7,
-                    8: 7,
-                    9: 7,
+                    7: val,
+                    8: val,
+                    9: val,
                     10: 10
                 }
             
             report = projection[signal]
             
         elif sigma == "PRIOR":
-            report = 7
+            val = int(round(prior))
+            report = val
             
         elif sigma == "ALL10":
             report = 10
         
         elif sigma == "HEDGE":
-            posterior = (7 + signal)/2.0
+            posterior = (prior + signal)/2.0
             report = int(round(posterior))
         
         else: 
             report = signal
             
         return report
-        
     
 class Submission:
     """

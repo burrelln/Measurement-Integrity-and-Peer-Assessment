@@ -92,9 +92,6 @@ def run_simulation(num_semesters, num_assignments, strategy_map, strat, mechanis
                 deviator = s
                 found_deviator = True
             i += 1
-        
-        #necessary for PTS
-        H = ones(11)
             
         grader_dicts = []
         grading_dicts = []
@@ -143,6 +140,8 @@ def run_simulation(num_semesters, num_assignments, strategy_map, strat, mechanis
                         deviator.grades[assignment_num][submission.student_id] = grade
                         submission.grades[deviator.id] = grade
                 
+            #necessary for PTS
+            H = ones(11)
             
             for assignment in range(len(submission_lists)):
                 """
@@ -156,8 +155,7 @@ def run_simulation(num_semesters, num_assignments, strategy_map, strat, mechanis
                 """
                     
                 if mechanism == "BASELINE":
-                    num_students = len(students)
-                    mean_squared_error(grader_dict, num_students)
+                    mean_squared_error(grader_dict)
                         
                 elif mechanism == "DMI":
                     cluster_size = int(mechanism_param)
@@ -376,8 +374,6 @@ if __name__ == "__main__":
     
     """ 
     Uncomment the strategies to be included in an experiment.
-    
-    Note that uninformative strategies are not considered in this experiment.
     """
     
     strategies = [

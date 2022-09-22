@@ -37,9 +37,9 @@
                 "Variance Gain": 696.3170707070707
             },
             "PTS: 0": {
-                "Mean Gain": -5.65,
-                "Median Gain": -11.0,
-                "Variance Gain": 1107.078282828283
+                "Mean Gain": -5.54,
+                "Median Gain": -3.5,
+                "Variance Gain": 749.9276767676768
             },
             "MSE_P: 0": {
                 "Mean Gain": -29.5,
@@ -104,9 +104,9 @@
                 "Variance Gain": 641.5429292929293
             },
             "PTS: 0": {
-                "Mean Gain": -3.29,
-                "Median Gain": -4.5,
-                "Variance Gain": 1051.7837373737375
+                "Mean Gain": -4.95,
+                "Median Gain": -0.5,
+                "Variance Gain": 769.9267676767677
             },
             "MSE_P: 0": {
                 "Mean Gain": -30.54,
@@ -171,9 +171,9 @@
                 "Variance Gain": 757.4965656565656
             },
             "PTS: 0": {
-                "Mean Gain": -2.18,
-                "Median Gain": -1.0,
-                "Variance Gain": 776.0884848484849
+                "Mean Gain": -4.08,
+                "Median Gain": -3.5,
+                "Variance Gain": 825.2460606060606
             },
             "MSE_P: 0": {
                 "Mean Gain": -31.03,
@@ -238,9 +238,9 @@
                 "Variance Gain": 754.4520202020202
             },
             "PTS: 0": {
-                "Mean Gain": -5.88,
-                "Median Gain": -4.0,
-                "Variance Gain": 812.3086868686869
+                "Mean Gain": -10.48,
+                "Median Gain": -10.5,
+                "Variance Gain": 1039.0197979797979
             },
             "MSE_P: 0": {
                 "Mean Gain": -28.87,
@@ -305,9 +305,9 @@
                 "Variance Gain": 879.7676767676768
             },
             "PTS: 0": {
-                "Mean Gain": -8.36,
-                "Median Gain": -4.0,
-                "Variance Gain": 682.4751515151515
+                "Mean Gain": -5.38,
+                "Median Gain": -4.5,
+                "Variance Gain": 835.8137373737374
             },
             "MSE_P: 0": {
                 "Mean Gain": -28.06,
@@ -372,9 +372,9 @@
                 "Variance Gain": 739.5478787878789
             },
             "PTS: 0": {
-                "Mean Gain": -7.34,
-                "Median Gain": -4.0,
-                "Variance Gain": 729.8428282828283
+                "Mean Gain": -4.2,
+                "Median Gain": -1.5,
+                "Variance Gain": 1143.4343434343434
             },
             "MSE_P: 0": {
                 "Mean Gain": -28.23,
@@ -439,9 +439,9 @@
                 "Variance Gain": 849.9857575757576
             },
             "PTS: 0": {
-                "Mean Gain": -8.17,
-                "Median Gain": -8.0,
-                "Variance Gain": 1076.1829292929292
+                "Mean Gain": -0.62,
+                "Median Gain": -2.0,
+                "Variance Gain": 1018.2783838383838
             },
             "MSE_P: 0": {
                 "Mean Gain": -28.71,
@@ -506,9 +506,9 @@
                 "Variance Gain": 910.3203030303031
             },
             "PTS: 0": {
-                "Mean Gain": -0.72,
-                "Median Gain": -1.0,
-                "Variance Gain": 1106.5470707070708
+                "Mean Gain": -8.95,
+                "Median Gain": -7.5,
+                "Variance Gain": 957.7449494949495
             },
             "MSE_P: 0": {
                 "Mean Gain": -31.26,
@@ -573,9 +573,9 @@
                 "Variance Gain": 863.260101010101
             },
             "PTS: 0": {
-                "Mean Gain": -5.97,
-                "Median Gain": -1.5,
-                "Variance Gain": 1082.1506060606062
+                "Mean Gain": -2.27,
+                "Median Gain": 0.0,
+                "Variance Gain": 1015.4718181818182
             },
             "MSE_P: 0": {
                 "Mean Gain": -27.54,
@@ -642,9 +642,9 @@
                 "Variance Gain": 630.6281818181818
             },
             "PTS: 0": {
-                "Mean Gain": -3.4,
-                "Median Gain": -1.0,
-                "Variance Gain": 912.7878787878788
+                "Mean Gain": 0.76,
+                "Median Gain": 0.0,
+                "Variance Gain": 812.2852525252525
             },
             "MSE_P: 0": {
                 "Mean Gain": 2.7,
@@ -709,9 +709,9 @@
                 "Variance Gain": 967.9127272727272
             },
             "PTS: 0": {
-                "Mean Gain": -5.09,
-                "Median Gain": -1.5,
-                "Variance Gain": 926.3049494949495
+                "Mean Gain": -5.92,
+                "Median Gain": 0.0,
+                "Variance Gain": 964.7208080808081
             },
             "MSE_P: 0": {
                 "Mean Gain": 2.34,
@@ -776,9 +776,9 @@
                 "Variance Gain": 953.3061616161616
             },
             "PTS: 0": {
-                "Mean Gain": 2.94,
+                "Mean Gain": -1.01,
                 "Median Gain": 0.0,
-                "Variance Gain": 1337.6529292929292
+                "Variance Gain": 1076.1110101010102
             },
             "MSE_P: 0": {
                 "Mean Gain": 1.13,
@@ -843,9 +843,9 @@
                 "Variance Gain": 838.1635353535354
             },
             "PTS: 0": {
-                "Mean Gain": -1.68,
-                "Median Gain": -2.5,
-                "Variance Gain": 997.270303030303
+                "Mean Gain": 0.84,
+                "Median Gain": 0.0,
+                "Variance Gain": 1145.7721212121212
             },
             "MSE_P: 0": {
                 "Mean Gain": 2,
@@ -910,9 +910,9 @@
                 "Variance Gain": 630.979696969697
             },
             "PTS: 0": {
-                "Mean Gain": -3.53,
-                "Median Gain": -1.0,
-                "Variance Gain": 1047.100101010101
+                "Mean Gain": -4.13,
+                "Median Gain": 0.0,
+                "Variance Gain": 1023.730404040404
             },
             "MSE_P: 0": {
                 "Mean Gain": 2.17,
@@ -977,9 +977,9 @@
                 "Variance Gain": 516.809696969697
             },
             "PTS: 0": {
-                "Mean Gain": 2.32,
-                "Median Gain": 1.0,
-                "Variance Gain": 945.6541414141413
+                "Mean Gain": -7.86,
+                "Median Gain": 0.0,
+                "Variance Gain": 1036.6872727272728
             },
             "MSE_P: 0": {
                 "Mean Gain": 3.21,
@@ -1044,9 +1044,9 @@
                 "Variance Gain": 766.5126262626263
             },
             "PTS: 0": {
-                "Mean Gain": -1.55,
+                "Mean Gain": -1.86,
                 "Median Gain": 0.0,
-                "Variance Gain": 961.1186868686868
+                "Variance Gain": 1260.1216161616162
             },
             "MSE_P: 0": {
                 "Mean Gain": 2.53,
@@ -1111,9 +1111,9 @@
                 "Variance Gain": 711.6036363636364
             },
             "PTS: 0": {
-                "Mean Gain": -1.61,
-                "Median Gain": -2.0,
-                "Variance Gain": 1021.2504040404041
+                "Mean Gain": -1.13,
+                "Median Gain": 0.0,
+                "Variance Gain": 743.0031313131313
             },
             "MSE_P: 0": {
                 "Mean Gain": 1.43,
@@ -1178,9 +1178,9 @@
                 "Variance Gain": 658.4387878787879
             },
             "PTS: 0": {
-                "Mean Gain": -0.41,
-                "Median Gain": 1.0,
-                "Variance Gain": 853.759494949495
+                "Mean Gain": -6.27,
+                "Median Gain": 0.0,
+                "Variance Gain": 1116.4415151515152
             },
             "MSE_P: 0": {
                 "Mean Gain": 3.48,
@@ -1247,9 +1247,9 @@
                 "Variance Gain": 766.1061616161616
             },
             "PTS: 0": {
-                "Mean Gain": -15.74,
-                "Median Gain": -13.0,
-                "Variance Gain": 783.1438383838384
+                "Mean Gain": -9.48,
+                "Median Gain": -2.0,
+                "Variance Gain": 1010.9389898989899
             },
             "MSE_P: 0": {
                 "Mean Gain": 24.02,
@@ -1314,9 +1314,9 @@
                 "Variance Gain": 591.44
             },
             "PTS: 0": {
-                "Mean Gain": -8.01,
-                "Median Gain": -11.5,
-                "Variance Gain": 899.6665656565657
+                "Mean Gain": -4.57,
+                "Median Gain": -3.5,
+                "Variance Gain": 825.3182828282828
             },
             "MSE_P: 0": {
                 "Mean Gain": 20.3,
@@ -1381,9 +1381,9 @@
                 "Variance Gain": 842.4140404040404
             },
             "PTS: 0": {
-                "Mean Gain": -7.85,
-                "Median Gain": -5.5,
-                "Variance Gain": 957.179292929293
+                "Mean Gain": 0.2,
+                "Median Gain": 0.0,
+                "Variance Gain": 744.9090909090909
             },
             "MSE_P: 0": {
                 "Mean Gain": 28.27,
@@ -1448,9 +1448,9 @@
                 "Variance Gain": 660.6031313131313
             },
             "PTS: 0": {
-                "Mean Gain": -5.89,
-                "Median Gain": -4.0,
-                "Variance Gain": 1043.5130303030303
+                "Mean Gain": -4.28,
+                "Median Gain": -2.0,
+                "Variance Gain": 810.0016161616162
             },
             "MSE_P: 0": {
                 "Mean Gain": 29.86,
@@ -1515,9 +1515,9 @@
                 "Variance Gain": 616.2120202020202
             },
             "PTS: 0": {
-                "Mean Gain": -0.35,
-                "Median Gain": 2.0,
-                "Variance Gain": 1201.5025252525252
+                "Mean Gain": 9.06,
+                "Median Gain": 8.0,
+                "Variance Gain": 882.1175757575758
             },
             "MSE_P: 0": {
                 "Mean Gain": 26.02,
@@ -1582,9 +1582,9 @@
                 "Variance Gain": 527.2536363636364
             },
             "PTS: 0": {
-                "Mean Gain": 0.86,
-                "Median Gain": -0.5,
-                "Variance Gain": 1122.929696969697
+                "Mean Gain": 5.6,
+                "Median Gain": 5.5,
+                "Variance Gain": 1155.050505050505
             },
             "MSE_P: 0": {
                 "Mean Gain": 31.21,
@@ -1649,9 +1649,9 @@
                 "Variance Gain": 600.4266666666666
             },
             "PTS: 0": {
-                "Mean Gain": 11.17,
-                "Median Gain": 8.0,
-                "Variance Gain": 1115.3950505050504
+                "Mean Gain": 14.24,
+                "Median Gain": 14.0,
+                "Variance Gain": 964.6286868686868
             },
             "MSE_P: 0": {
                 "Mean Gain": 33.36,
@@ -1716,9 +1716,9 @@
                 "Variance Gain": 578.9337373737374
             },
             "PTS: 0": {
-                "Mean Gain": 10.07,
+                "Mean Gain": 14.59,
                 "Median Gain": 11.0,
-                "Variance Gain": 1415.2778787878788
+                "Variance Gain": 1467.921111111111
             },
             "MSE_P: 0": {
                 "Mean Gain": 31.72,
@@ -1783,9 +1783,9 @@
                 "Variance Gain": 750.8117171717172
             },
             "PTS: 0": {
-                "Mean Gain": 23,
-                "Median Gain": 25.5,
-                "Variance Gain": 1706.141414141414
+                "Mean Gain": 13.28,
+                "Median Gain": 15.5,
+                "Variance Gain": 1737.819797979798
             },
             "MSE_P: 0": {
                 "Mean Gain": 33.22,
@@ -1852,9 +1852,9 @@
                 "Variance Gain": 1054.6060606060605
             },
             "PTS: 0": {
-                "Mean Gain": -38.88,
-                "Median Gain": -39.5,
-                "Variance Gain": 752.4703030303031
+                "Mean Gain": -36.52,
+                "Median Gain": -37.5,
+                "Variance Gain": 855.8278787878788
             },
             "MSE_P: 0": {
                 "Mean Gain": 28.19,
@@ -1919,9 +1919,9 @@
                 "Variance Gain": 1036.528888888889
             },
             "PTS: 0": {
-                "Mean Gain": -41.39,
-                "Median Gain": -42.5,
-                "Variance Gain": 872.6443434343435
+                "Mean Gain": -30.82,
+                "Median Gain": -31.0,
+                "Variance Gain": 1187.8864646464647
             },
             "MSE_P: 0": {
                 "Mean Gain": 43.43,
@@ -1986,9 +1986,9 @@
                 "Variance Gain": 1303.340909090909
             },
             "PTS: 0": {
-                "Mean Gain": -32.54,
-                "Median Gain": -36.0,
-                "Variance Gain": 1143.6246464646465
+                "Mean Gain": -29.66,
+                "Median Gain": -33.5,
+                "Variance Gain": 1158.7923232323233
             },
             "MSE_P: 0": {
                 "Mean Gain": 49.15,
@@ -2053,9 +2053,9 @@
                 "Variance Gain": 1311.1430303030304
             },
             "PTS: 0": {
-                "Mean Gain": -31.29,
-                "Median Gain": -34.0,
-                "Variance Gain": 1294.1069696969696
+                "Mean Gain": -16.4,
+                "Median Gain": -17.0,
+                "Variance Gain": 1492.989898989899
             },
             "MSE_P: 0": {
                 "Mean Gain": 45.4,
@@ -2120,9 +2120,9 @@
                 "Variance Gain": 1305.718787878788
             },
             "PTS: 0": {
-                "Mean Gain": -22.03,
-                "Median Gain": -31.5,
-                "Variance Gain": 1785.7869696969697
+                "Mean Gain": -16.25,
+                "Median Gain": -20.5,
+                "Variance Gain": 1755.199494949495
             },
             "MSE_P: 0": {
                 "Mean Gain": 45.71,
@@ -2187,9 +2187,9 @@
                 "Variance Gain": 1377.9046464646465
             },
             "PTS: 0": {
-                "Mean Gain": -5.03,
-                "Median Gain": 5.0,
-                "Variance Gain": 1971.8475757575757
+                "Mean Gain": 0.89,
+                "Median Gain": -2.5,
+                "Variance Gain": 2338.0988888888887
             },
             "MSE_P: 0": {
                 "Mean Gain": 49.55,
@@ -2254,9 +2254,9 @@
                 "Variance Gain": 2070.5943434343435
             },
             "PTS: 0": {
-                "Mean Gain": 1.94,
-                "Median Gain": 7.0,
-                "Variance Gain": 2083.006464646465
+                "Mean Gain": 2.28,
+                "Median Gain": 3.5,
+                "Variance Gain": 2284.425858585859
             },
             "MSE_P: 0": {
                 "Mean Gain": 49.6,
@@ -2321,9 +2321,9 @@
                 "Variance Gain": 2098.977373737374
             },
             "PTS: 0": {
-                "Mean Gain": 15.18,
-                "Median Gain": 25.0,
-                "Variance Gain": 2645.260202020202
+                "Mean Gain": 11.49,
+                "Median Gain": 17.0,
+                "Variance Gain": 2724.2928282828284
             },
             "MSE_P: 0": {
                 "Mean Gain": 51.76,
@@ -2388,9 +2388,9 @@
                 "Variance Gain": 2835.928888888889
             },
             "PTS: 0": {
-                "Mean Gain": 21.31,
-                "Median Gain": 40.5,
-                "Variance Gain": 3432.559494949495
+                "Mean Gain": 21.96,
+                "Median Gain": 36.5,
+                "Variance Gain": 2978.119595959596
             },
             "MSE_P: 0": {
                 "Mean Gain": 48.31,
@@ -2457,9 +2457,9 @@
                 "Variance Gain": 997.1534343434344
             },
             "PTS: 0": {
-                "Mean Gain": -40.65,
-                "Median Gain": -43.0,
-                "Variance Gain": 803.4217171717172
+                "Mean Gain": -35.45,
+                "Median Gain": -36.0,
+                "Variance Gain": 816.0075757575758
             },
             "MSE_P: 0": {
                 "Mean Gain": -12.69,
@@ -2524,9 +2524,9 @@
                 "Variance Gain": 1349.060606060606
             },
             "PTS: 0": {
-                "Mean Gain": -38.15,
-                "Median Gain": -43.5,
-                "Variance Gain": 973.4419191919192
+                "Mean Gain": -29.43,
+                "Median Gain": -28.5,
+                "Variance Gain": 947.8233333333334
             },
             "MSE_P: 0": {
                 "Mean Gain": 19.47,
@@ -2591,9 +2591,9 @@
                 "Variance Gain": 1570.0657575757577
             },
             "PTS: 0": {
-                "Mean Gain": -26.69,
-                "Median Gain": -26.0,
-                "Variance Gain": 1353.50898989899
+                "Mean Gain": -14.12,
+                "Median Gain": -16.5,
+                "Variance Gain": 1590.1066666666668
             },
             "MSE_P: 0": {
                 "Mean Gain": 35.63,
@@ -2658,9 +2658,9 @@
                 "Variance Gain": 1291.2374747474748
             },
             "PTS: 0": {
-                "Mean Gain": -15.47,
-                "Median Gain": -15.5,
-                "Variance Gain": 1567.5647474747475
+                "Mean Gain": -1.91,
+                "Median Gain": 1.5,
+                "Variance Gain": 1492.2443434343434
             },
             "MSE_P: 0": {
                 "Mean Gain": 38.85,
@@ -2725,9 +2725,9 @@
                 "Variance Gain": 1190.25
             },
             "PTS: 0": {
-                "Mean Gain": -23.29,
-                "Median Gain": -36.0,
-                "Variance Gain": 1936.531212121212
+                "Mean Gain": 7.88,
+                "Median Gain": 9.0,
+                "Variance Gain": 1807.7834343434342
             },
             "MSE_P: 0": {
                 "Mean Gain": 48.86,
@@ -2792,9 +2792,9 @@
                 "Variance Gain": 1778.7954545454545
             },
             "PTS: 0": {
-                "Mean Gain": 0.86,
-                "Median Gain": 16.5,
-                "Variance Gain": 2276.8488888888887
+                "Mean Gain": 4,
+                "Median Gain": 6.0,
+                "Variance Gain": 1855.7777777777778
             },
             "MSE_P: 0": {
                 "Mean Gain": 48.28,
@@ -2859,9 +2859,9 @@
                 "Variance Gain": 1835.6925252525252
             },
             "PTS: 0": {
-                "Mean Gain": 8.63,
-                "Median Gain": 11.5,
-                "Variance Gain": 2203.3061616161617
+                "Mean Gain": 7.43,
+                "Median Gain": 22.0,
+                "Variance Gain": 2206.8334343434344
             },
             "MSE_P: 0": {
                 "Mean Gain": 45.39,
@@ -2926,9 +2926,9 @@
                 "Variance Gain": 2211.7862626262627
             },
             "PTS: 0": {
-                "Mean Gain": 3.71,
-                "Median Gain": 13.5,
-                "Variance Gain": 2469.076666666667
+                "Mean Gain": 22.75,
+                "Median Gain": 35.5,
+                "Variance Gain": 2085.8055555555557
             },
             "MSE_P: 0": {
                 "Mean Gain": 50.22,
@@ -2993,9 +2993,9 @@
                 "Variance Gain": 2798.6925252525252
             },
             "PTS: 0": {
-                "Mean Gain": 26.17,
-                "Median Gain": 42.5,
-                "Variance Gain": 3012.768787878788
+                "Mean Gain": 29.41,
+                "Median Gain": 40.5,
+                "Variance Gain": 2149.9211111111113
             },
             "MSE_P: 0": {
                 "Mean Gain": 51.64,
@@ -3062,9 +3062,9 @@
                 "Variance Gain": 518.0581818181819
             },
             "PTS: 0": {
-                "Mean Gain": -28.55,
-                "Median Gain": -26.5,
-                "Variance Gain": 1049.340909090909
+                "Mean Gain": -25.94,
+                "Median Gain": -23.5,
+                "Variance Gain": 847.8953535353535
             },
             "MSE_P: 0": {
                 "Mean Gain": 42.31,
@@ -3129,9 +3129,9 @@
                 "Variance Gain": 343.27787878787876
             },
             "PTS: 0": {
-                "Mean Gain": -23.28,
-                "Median Gain": -23.5,
-                "Variance Gain": 1027.3147474747475
+                "Mean Gain": -16.95,
+                "Median Gain": -14.0,
+                "Variance Gain": 833.9267676767677
             },
             "MSE_P: 0": {
                 "Mean Gain": 48.62,
@@ -3196,9 +3196,9 @@
                 "Variance Gain": 272.04555555555555
             },
             "PTS: 0": {
-                "Mean Gain": -21.5,
-                "Median Gain": -22.0,
-                "Variance Gain": 862.2121212121212
+                "Mean Gain": -12.86,
+                "Median Gain": -14.5,
+                "Variance Gain": 1008.4044444444445
             },
             "MSE_P: 0": {
                 "Mean Gain": 48.53,
@@ -3263,9 +3263,9 @@
                 "Variance Gain": 316.7612121212121
             },
             "PTS: 0": {
-                "Mean Gain": -10.67,
+                "Mean Gain": -11.47,
                 "Median Gain": -12.5,
-                "Variance Gain": 1425.1728282828283
+                "Variance Gain": 1238.5344444444445
             },
             "MSE_P: 0": {
                 "Mean Gain": 48.4,
@@ -3330,9 +3330,9 @@
                 "Variance Gain": 321.3384848484848
             },
             "PTS: 0": {
-                "Mean Gain": -17.09,
-                "Median Gain": -18.0,
-                "Variance Gain": 1256.9918181818182
+                "Mean Gain": 1.62,
+                "Median Gain": -2.5,
+                "Variance Gain": 1380.480404040404
             },
             "MSE_P: 0": {
                 "Mean Gain": 47.66,
@@ -3397,9 +3397,9 @@
                 "Variance Gain": 207.01373737373737
             },
             "PTS: 0": {
-                "Mean Gain": -1.43,
-                "Median Gain": 3.0,
-                "Variance Gain": 1567.1970707070707
+                "Mean Gain": -2.76,
+                "Median Gain": -2.0,
+                "Variance Gain": 1697.4771717171718
             },
             "MSE_P: 0": {
                 "Mean Gain": 47.2,
@@ -3464,9 +3464,9 @@
                 "Variance Gain": 217.31505050505052
             },
             "PTS: 0": {
-                "Mean Gain": -9.72,
-                "Median Gain": -13.0,
-                "Variance Gain": 1667.819797979798
+                "Mean Gain": 4.14,
+                "Median Gain": 4.0,
+                "Variance Gain": 1373.4549494949495
             },
             "MSE_P: 0": {
                 "Mean Gain": 44.75,
@@ -3531,9 +3531,9 @@
                 "Variance Gain": 295.6969696969697
             },
             "PTS: 0": {
-                "Mean Gain": 6.8,
-                "Median Gain": 6.0,
-                "Variance Gain": 1645.4747474747476
+                "Mean Gain": 9.08,
+                "Median Gain": 14.0,
+                "Variance Gain": 2050.680404040404
             },
             "MSE_P: 0": {
                 "Mean Gain": 49.14,
@@ -3598,9 +3598,9 @@
                 "Variance Gain": 329.98545454545456
             },
             "PTS: 0": {
-                "Mean Gain": 14.6,
-                "Median Gain": 20.5,
-                "Variance Gain": 2541.2323232323233
+                "Mean Gain": 13.13,
+                "Median Gain": 12.5,
+                "Variance Gain": 2024.2152525252525
             },
             "MSE_P: 0": {
                 "Mean Gain": 47.04,

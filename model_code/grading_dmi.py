@@ -1,6 +1,6 @@
 """
 Helper function that assigns graders when the DMI mechanism is being used, effectively superseding the analogous function in grading.py.
-(The DMI mechanism is not functional wjen the functions from grading.py are used to assign graders.)
+(The DMI mechanism is not functional when the functions from grading.py are used to assign graders.)
 
 @author: Noah Burrell <burrelln@umich.edu>
 """

@@ -126,4 +126,6 @@ def assign_grades(grading_dict, num_draws, assignment_num, continuous_effort=Fal
                 
             grader.grades[assignment_num][submission.student_id] = grade
             submission.grades[grader.id] = grade
+            
+            grader.update_mse(ground_truth, grade)
     

@@ -10,7 +10,6 @@ from itertools import combinations
 def oa_mechanism(grader_dict):
     """
     Computes payments for students according to the OA mechanism.
-    Each Submission is graded by 4 students.
 
     Parameters
     ----------
@@ -30,11 +29,12 @@ def oa_mechanism(grader_dict):
         
         """
         COMPUTING THE SCORES
-        
         """
         assignment = submission.assignment_number
         
         task = submission.student_id
+        
+        constant = 1/(len(graders) - 1)
         
         pairs = combinations(graders, 2)
         
@@ -50,5 +50,5 @@ def oa_mechanism(grader_dict):
             if one_report == two_report:
                 score = 1.0 / R[one_report]
                 
-            one.payment += (1/3)*score
-            two.payment += (1/3)*score
+            one.payment += constant*score
+            two.payment += constant*score

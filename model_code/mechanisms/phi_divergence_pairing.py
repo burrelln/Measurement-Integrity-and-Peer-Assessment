@@ -68,6 +68,13 @@ def phi_divergence_pairing_mechanism(grader_dict, phi_divergence="TVD"):
         
         bonus = submission.student_id
         
+        constant_dict = {}
+        temp_scores = {}
+        
+        for grader in graders:
+            constant_dict[grader.id] = (len(graders) - 1)
+            temp_scores[grader.id] = 0
+        
         pairs = combinations(graders, 2)
         
         for pair in pairs:
@@ -77,17 +84,46 @@ def phi_divergence_pairing_mechanism(grader_dict, phi_divergence="TVD"):
             bonus_one_grade = one.grades[assignment][bonus]
             bonus_two_grade = two.grades[assignment][bonus]
             
-            penalties_one = list(one.grades[assignment].keys())
+            penalties_one = list(one.grades[assignment].keys()) 
+            if assignment in one.penalty_tasks.keys():
+                penalties_one += list(one.penalty_tasks[assignment].keys())
             penalties_one.remove(bonus)
-            penalty_one = choice(penalties_one)
-            penalty_one_grade = one.grades[assignment][penalty_one]
-            
             penalties_two = list(two.grades[assignment].keys())
+            if assignment in two.penalty_tasks.keys():
+               penalties_two += list(two.penalty_tasks[assignment].keys())
             penalties_two.remove(bonus)
-            if penalty_one in penalties_two:
-                penalties_two.remove(penalty_one)
-            penalty_two = choice(penalties_two)
-            penalty_two_grade = two.grades[assignment][penalty_two]
+            
+            i = 0
+            found = False
+            shuffle(penalties_one)
+            while (i < len(penalties_one)) and (not found):
+                possible = penalties_one[i]
+                if possible not in penalties_two:
+                    penalty_one = possible
+                    found = True
+                elif len(penalties_two) > 1:
+                    penalty_one = possible
+                    penalties_two.remove(penalty_one)
+                    found = True
+                i += 1
+                
+            if not found:
+                #print("Pair of students without possible penalty task:", one.id, two.id)
+                constant_dict[one.id] -= 1
+                constant_dict[two.id] -= 1
+                continue
+                
+            else:
+                if penalty_one in one.grades[assignment].keys():
+                    penalty_one_grade = one.grades[assignment][penalty_one]
+                else:
+                    penalty_one_grade = one.penalty_tasks[assignment][penalty_one]
+                    
+                penalty_two = choice(penalties_two)
+                if penalty_two in two.grades[assignment].keys():
+                    penalty_two_grade = two.grades[assignment][penalty_two]
+                else:
+                    penalty_two_grade = two.penalty_tasks[assignment][penalty_two]
             
             if phi_divergence == "TVD":
                 conjugate = lambda b: b
@@ -123,8 +159,17 @@ def phi_divergence_pairing_mechanism(grader_dict, phi_divergence="TVD"):
             if score < minsize:
                 score = minsize
                 
-            one.payment += (1/3)*score
-            two.payment += (1/3)*score
+            temp_scores[one.id] += score
+            temp_scores[two.id] += score
+            
+        for grader in graders:
+            constant_inv = constant_dict[grader.id]
+            if constant_inv > 0:
+                constant = 1/constant_inv
+                temp_score = temp_scores[grader.id]
+                grader.payment += constant*temp_score
+            else:
+                grader.num_graded -= 1
             
 def estimate_pairwise_scoring_matrices(grader_dict, phi_divergence="TVD"):
     """
@@ -186,9 +231,6 @@ def estimate_pairwise_scoring_matrices(grader_dict, phi_divergence="TVD"):
     normalize_A = 1/len(A)
     normalize_B = 1/len(B)
     
-    marginal_normalization_coeff_A = 1/4 * normalize_A
-    marginal_normalization_coeff_B = 1/4 * normalize_B
-    
     # JOINT DISTRIBUTION ESTIMATES
     JA = np.zeros(shape=(11, 11))
     JB = np.zeros(shape=(11, 11))
@@ -199,7 +241,7 @@ def estimate_pairwise_scoring_matrices(grader_dict, phi_divergence="TVD"):
     
     """
     Compute the expectation of the process of estimating the joint distribution of signals
-    along w/the expectation of the process of estimatinf the marginal distribution.
+    along w/the expectation of the process of estimating the marginal distribution.
     """
     
     for submission, graders in grader_dict.items():
@@ -217,13 +259,15 @@ def estimate_pairwise_scoring_matrices(grader_dict, phi_divergence="TVD"):
             if count > 0:
                 matrix[i, i] = count * (count - 1)
         
-        normalization_coefficient = 1/12
+        normalization_coefficient = 1/(len(graders)*(len(graders) - 1))
+        marginal_normalization_coeff = 1/len(graders)
         
         if task in A:
             normalization_coefficient *= normalize_A
             matrix = np.multiply(matrix, normalization_coefficient)
             JA += matrix
             
+            counts *= marginal_normalization_coeff
             MA += counts
             
         else:
@@ -231,10 +275,11 @@ def estimate_pairwise_scoring_matrices(grader_dict, phi_divergence="TVD"):
             matrix = np.multiply(matrix, normalization_coefficient)
             JB += matrix
             
+            counts *= marginal_normalization_coeff
             MB += counts
             
-    MA *= marginal_normalization_coeff_A
-    MB *= marginal_normalization_coeff_B
+    MA *= normalize_A
+    MB *= normalize_B
     
     """
     Compute the products of the marginal distrubitions estimates
@@ -303,8 +348,8 @@ def parametric_phi_divergence_pairing_mechanism(grader_dict, student_list, assig
     
     if not iteration < 1000:
         print("EM estimation procedure did not converge.")
-        biases = np.zeros(100)
-        reliability = np.zeros(100)
+        biases = {student.id: 0 for student in student_list}
+        reliability = {student.id: 0 for student in student_list}
     
     for submission, graders in grader_dict.items():
         
@@ -322,6 +367,13 @@ def parametric_phi_divergence_pairing_mechanism(grader_dict, student_list, assig
         
         bonus = submission.student_id
         
+        constant_dict = {}
+        temp_scores = {}
+        
+        for grader in graders:
+            constant_dict[grader.id] = (len(graders) - 1)
+            temp_scores[grader.id] = 0
+        
         pairs = combinations(graders, 2)
         
         for pair in pairs:
@@ -336,17 +388,46 @@ def parametric_phi_divergence_pairing_mechanism(grader_dict, student_list, assig
             bonus_one_grade = one.grades[assignment][bonus]
             bonus_two_grade = two.grades[assignment][bonus]
             
-            penalties_one = list(one.grades[assignment].keys())
+            penalties_one = list(one.grades[assignment].keys()) 
+            if assignment in one.penalty_tasks.keys():
+                penalties_one += list(one.penalty_tasks[assignment].keys())
             penalties_one.remove(bonus)
-            penalty_one = choice(penalties_one)
-            penalty_one_grade = one.grades[assignment][penalty_one]
-            
             penalties_two = list(two.grades[assignment].keys())
+            if assignment in two.penalty_tasks.keys():
+               penalties_two += list(two.penalty_tasks[assignment].keys())
             penalties_two.remove(bonus)
-            if penalty_one in penalties_two:
-                penalties_two.remove(penalty_one)
-            penalty_two = choice(penalties_two)
-            penalty_two_grade = two.grades[assignment][penalty_two]
+            
+            i = 0
+            found = False
+            shuffle(penalties_one)
+            while (i < len(penalties_one)) and (not found):
+                possible = penalties_one[i]
+                if possible not in penalties_two:
+                    penalty_one = possible
+                    found = True
+                elif len(penalties_two) > 1:
+                    penalty_one = possible
+                    penalties_two.remove(penalty_one)
+                    found = True
+                i += 1
+                
+            if not found:
+                #print("Pair of students without possible penalty task:", one.id, two.id)
+                constant_dict[one.id] -= 1
+                constant_dict[two.id] -= 1
+                continue
+            
+            else:
+                if penalty_one in one.grades[assignment].keys():
+                    penalty_one_grade = one.grades[assignment][penalty_one]
+                else:
+                    penalty_one_grade = one.penalty_tasks[assignment][penalty_one]
+                    
+                penalty_two = choice(penalties_two)
+                if penalty_two in two.grades[assignment].keys():
+                    penalty_two_grade = two.grades[assignment][penalty_two]
+                else:
+                    penalty_two_grade = two.penalty_tasks[assignment][penalty_two]
             
             if phi_divergence == "TVD":
                 conjugate = lambda b: b
@@ -360,7 +441,7 @@ def parametric_phi_divergence_pairing_mechanism(grader_dict, student_list, assig
             elif phi_divergence == "SQUARED_HELLINGER":
                 conjugate = lambda b: (-b)/(b - 1)
             
-            penalty_val = evaluate_K(penalty_one_grade, penalty_two_grade, mu, tau_1, tau_2, b_1, b_2, phi_divergence)
+            penalty_val = evaluate_K(penalty_one_grade, penalty_two_grade, mu, gamma, tau_1, tau_2, b_1, b_2, phi_divergence)
             if phi_divergence == "SQUARED_HELLINGER" and penalty_val == 1:
                 penalty_score = minsize
             else:
@@ -370,12 +451,21 @@ def parametric_phi_divergence_pairing_mechanism(grader_dict, student_list, assig
                 #Conjugate may evaluate to infty/-infty, limit as b -> -infty is -1.
                 penalty_score = -1
                     
-            bonus_score = evaluate_K(bonus_one_grade, bonus_two_grade, mu, tau_1, tau_2, b_1, b_2, phi_divergence)
+            bonus_score = evaluate_K(bonus_one_grade, bonus_two_grade, mu, gamma, tau_1, tau_2, b_1, b_2, phi_divergence)
             
             score = bonus_score - penalty_score
                 
-            one.payment += (1/3)*score
-            two.payment += (1/3)*score
+            temp_scores[one.id] += score
+            temp_scores[two.id] += score
+            
+        for grader in graders:
+            constant_inv = constant_dict[grader.id]
+            if constant_inv > 0:
+                constant = 1/constant_inv
+                temp_score = temp_scores[grader.id]
+                grader.payment += constant*temp_score
+            else:
+                grader.num_graded -= 1
             
 def compute_K(J, PM, phi_divergence):
     """
@@ -510,7 +600,7 @@ def squared_hellinger_subdifferential(a):
 
     return ans
 
-def evaluate_K(x, y, m, tau_1, tau_2, b_1, b_2, phi_divergence):
+def evaluate_K(x, y, mu, gamma, tau_1, tau_2, b_1, b_2, phi_divergence):
     """ 
     Evaluates the scoring function K(x, y), which is equal to df(joint-to-marginal-product ratio) when the joint-to-marginal-product ratio is computed using parametric model estimates.
     df is determined by the choice of phi_divergence.
@@ -521,8 +611,10 @@ def evaluate_K(x, y, m, tau_1, tau_2, b_1, b_2, phi_divergence):
        Grader 1's report.
     y: int 0-10.
        Grader 2's report.
-    m: int (or float).
-       mean of true grade distribution
+    mu : float.
+        The mean of the normal approximation of the distribution of true grades.
+    gamma : float.
+        The precision (i.e. the inverse of the variance) of the normal approximation of the distribution of true grades.
     tau_1: float. 
            Estimated reliability of grader 1
     tau_2: float.
@@ -557,21 +649,24 @@ def evaluate_K(x, y, m, tau_1, tau_2, b_1, b_2, phi_divergence):
             K(x, y)
 
     """
-    val = (2.1 + (1/tau_1))*(2.1 + (1/tau_2))
     
-    eps = np.array([x - (m + b_1), y - (m  + b_2)])
-    L = np.array([[2.1*(2.1 + (1/tau_2)), -val],[-val, 2.1*(2.1 + (1/tau_1))]])
+    sig2 = 1/gamma
+    
+    val = (sig2 + (1/tau_1))*(sig2 + (1/tau_2))
+    
+    eps = np.array([x - (mu + b_1), y - (mu  + b_2)])
+    L = np.array([[sig2*(sig2 + (1/tau_2)), -val],[-val, sig2*(sig2 + (1/tau_1))]])
     
     interim = np.dot(eps, L)
     G = np.dot(interim, eps)
     
     num = val
-    denom = val - 4.41
+    denom = val - (sig2**2)
     
     coeff = sqrt(num/denom)
     
-    exp_num = -1*1.05*tau_1*tau_2*G
-    exp_denom = (2.1*tau_1 + 2.1*tau_2 + 1)*val
+    exp_num = -0.5*sig2*tau_1*tau_2*G
+    exp_denom = (sig2*tau_1 + sig2*tau_2 + 1)*val
     
     exp_val = exp(exp_num/exp_denom)
     

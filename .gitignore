@@ -1,4 +1,6 @@
 **/__pycache__/
+**/.DS_Store
+**/*.npy
 
 # Ignore generated figures and json files, but keep the directories where they are stored
 model_code/figures/*
@@ -13,3 +15,6 @@ data/figures/main_paper/*
 
 data/figures/appendix/*
 !data/figures/appendix/.gitkeep
+
+data/figures/poster/*
+!data/figures/poster/.gitkeep

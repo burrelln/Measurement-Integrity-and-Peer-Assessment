@@ -4,8 +4,9 @@ Implementation of the parametric MSE mechanism and the EM procedure used to esti
 @author: Noah Burrell <burrelln@umich.edu>
 """
 
-import numpy as np
 from math import sqrt
+
+import numpy as np
 from sklearn.metrics import mean_squared_error as mse
 from scipy.stats import gamma as gamma_distribution    
 
@@ -34,21 +35,20 @@ def mse_p_mechanism(grader_dict, student_list, assignment_num, mu, gamma, bias=T
 
     Returns
     -------
-    scores : np.array of floats.
-             The estimated grade computed for each submission.
-    reliability : np.array of floats.
-                  The estimated reliability computed for each grader.
-    biases : np.array of floats.
-             The estimated bias computed for each grader. All zeroes when bias=False.
+    scores : dict
+             {submission.student_id: estimated grade}
+    reliability : dict.
+             {student_id: estimated reliability}
+    biases : dict.
+             {student_id: estimated bias}
 
     """
     biases, reliability, scores, iteration = em_estimate_parameters(grader_dict, student_list, assignment_num, mu, gamma, bias)
     
     if not iteration < 1000:
         print("EM estimation procedure did not converge.")
-        reliability = np.zeros(len(student_list))
         for student in student_list:
-            student.payment += reliability[student.id] 
+            student.payment += 0
     
     else:
         for student in student_list:
@@ -87,27 +87,33 @@ def em_estimate_parameters(grader_dict, student_list, assignment_num, mu, gamma,
 
     Returns
     -------
-    biases : np.array of floats.
-             The estimated bias computed for each grader. All zeroes when bias=False.
-    reliability : np.array of floats.
-                  The estimated reliability computed for each grader.
-    scores : np.array of floats.
-             The estimated grade computed for each submission.
+    scores : dict
+             {submission.student_id: estimated grade}
+    reliability : dict.
+             {student_id: estimated reliability}
+    biases : dict.
+             {student_id: estimated bias}
+             All zeros when bias==False.
     iteration : int.
                 The total number of iterations of the EM process.
                 Value indicates either that the score estimates conveged or that the score estimates did not converge and the estimation was stopped after 1000 iterations.
     """
     
-    biases = np.zeros(len(student_list))
-    reliability = np.full(len(student_list), 1/1.05)
-    scores = np.full(len(student_list), 7.0)
+    biases = {student.id: 0 for student in student_list}
+    reliability = {student.id: (2*gamma)for student in student_list} 
+    scores = {submission.student_id: int(round(mu)) for submission in grader_dict.keys()}
     
-    old_scores = np.ones(len(student_list))
+    new_scores = np.zeros(len(scores))
+    old_scores = np.ones(len(scores))
     
     iteration = 0
-    while np.linalg.norm((old_scores - scores)) > 0.0001 and iteration < 1000:
+    termination = 0.0001
+    
+    score = np.linalg.norm((old_scores - new_scores))
+    
+    while score > termination and iteration < 1000:
         
-        old_scores = np.copy(scores)
+        old_scores_dict = scores.copy()
     
         #One Iteration of EM
         for submission in grader_dict.keys():
@@ -167,7 +173,16 @@ def em_estimate_parameters(grader_dict, student_list, assignment_num, mu, gamma,
             score = gamma_distribution.mean(a=posterior_a, scale=posterior_theta)
 
             reliability[student.id] = score
+        
+        idx = 0
+        for sid, score in scores.items():
+            old_score = old_scores_dict[sid]
+            old_scores[idx] = old_score
+            new_scores[idx] = score
+            idx += 1
             
+        score = np.linalg.norm((old_scores - new_scores))
+        
         iteration += 1
         
     return biases, reliability, scores, iteration

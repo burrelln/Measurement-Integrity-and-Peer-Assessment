@@ -102,7 +102,7 @@ def run_simulation(num_semesters, num_iterations, num_assignments, num_students,
                 """
                     
                 if mechanism == "BASELINE":
-                    mean_squared_error(grader_dict, num_students)
+                    mean_squared_error(grader_dict)
                         
                 elif mechanism == "DMI":
                     cluster_size = int(mechanism_param)

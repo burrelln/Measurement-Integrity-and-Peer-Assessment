@@ -10,7 +10,6 @@ from itertools import combinations
 def pts_mechanism(grader_dict, H_init):
     """
     Computes payments for students according to the PTS mechanism.
-    Each Submission is graded by 4 students.
 
     Parameters
     ----------
@@ -34,11 +33,12 @@ def pts_mechanism(grader_dict, H_init):
         
         """
         COMPUTING THE SCORES
-        
         """
         assignment = submission.assignment_number
         
         task = submission.student_id
+        
+        constant = 1/(len(graders) - 1)
         
         pairs = combinations(graders, 2)
         
@@ -55,8 +55,8 @@ def pts_mechanism(grader_dict, H_init):
             if one_report == two_report:
                 score = 1.0 / R[one_report]
                 
-            one.payment += (1/3)*score
-            two.payment += (1/3)*score
+            one.payment += constant*score
+            two.payment += constant*score
             
             H[one_report] += 1
             H[two_report] += 1

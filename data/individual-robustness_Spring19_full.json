@@ -1,0 +1,322 @@
+{
+    "NOISE": {
+        "1": {
+            "BASELINE: MSE": {
+                "Mean Gain": -7.877551020408164,
+                "Median Gain": -8,
+                "Variance Gain": 84.90136054421768
+            },
+            "OA: 0": {
+                "Mean Gain": -6.204081632653061,
+                "Median Gain": -4,
+                "Variance Gain": 293.4158163265306
+            },
+            "Phi-DIV: CHI_SQUARED": {
+                "Mean Gain": -2.7346938775510203,
+                "Median Gain": 0,
+                "Variance Gain": 245.69897959183672
+            },
+            "Phi-DIV: KL": {
+                "Mean Gain": -1.510204081632653,
+                "Median Gain": -1,
+                "Variance Gain": 231.13010204081633
+            },
+            "Phi-DIV: SQUARED_HELLINGER": {
+                "Mean Gain": -1.9387755102040816,
+                "Median Gain": -2,
+                "Variance Gain": 123.97534013605441
+            },
+            "Phi-DIV: TVD": {
+                "Mean Gain": -4.408163265306122,
+                "Median Gain": -5,
+                "Variance Gain": 242.78826530612244
+            },
+            "PTS: 0": {
+                "Mean Gain": -0.9795918367346939,
+                "Median Gain": -1,
+                "Variance Gain": 87.0204081632653
+            },
+            "MSE_P: 0": {
+                "Mean Gain": -11.040816326530612,
+                "Median Gain": -10,
+                "Variance Gain": 75.16496598639456
+            },
+            "Phi-DIV_P: CHI_SQUARED": {
+                "Mean Gain": -2.7551020408163267,
+                "Median Gain": -1,
+                "Variance Gain": 60.18877551020408
+            },
+            "Phi-DIV_P: KL": {
+                "Mean Gain": -7.6938775510204085,
+                "Median Gain": -6,
+                "Variance Gain": 101.25850340136056
+            },
+            "Phi-DIV_P: SQUARED_HELLINGER": {
+                "Mean Gain": -9.73469387755102,
+                "Median Gain": -6,
+                "Variance Gain": 131.28231292517006
+            },
+            "Phi-DIV_P: TVD": {
+                "Mean Gain": -6.183673469387755,
+                "Median Gain": -5,
+                "Variance Gain": 170.48639455782313
+            }
+        }
+    },
+    "MERGE": {
+        "1": {
+            "BASELINE: MSE": {
+                "Mean Gain": 8.204081632653061,
+                "Median Gain": 8,
+                "Variance Gain": 89.74914965986395
+            },
+            "OA: 0": {
+                "Mean Gain": 18.040816326530614,
+                "Median Gain": 16,
+                "Variance Gain": 127.91496598639456
+            },
+            "Phi-DIV: CHI_SQUARED": {
+                "Mean Gain": 9.142857142857142,
+                "Median Gain": 9,
+                "Variance Gain": 181.29166666666666
+            },
+            "Phi-DIV: KL": {
+                "Mean Gain": 16.3265306122449,
+                "Median Gain": 17,
+                "Variance Gain": 158.93282312925172
+            },
+            "Phi-DIV: SQUARED_HELLINGER": {
+                "Mean Gain": 13.959183673469388,
+                "Median Gain": 14,
+                "Variance Gain": 206.8316326530612
+            },
+            "Phi-DIV: TVD": {
+                "Mean Gain": -0.3469387755102041,
+                "Median Gain": 0,
+                "Variance Gain": 134.43962585034015
+            },
+            "PTS: 0": {
+                "Mean Gain": 2.204081632653061,
+                "Median Gain": 1,
+                "Variance Gain": 74.08248299319727
+            },
+            "MSE_P: 0": {
+                "Mean Gain": 7.081632653061225,
+                "Median Gain": 6,
+                "Variance Gain": 120.99319727891157
+            },
+            "Phi-DIV_P: CHI_SQUARED": {
+                "Mean Gain": -3.36734693877551,
+                "Median Gain": -2,
+                "Variance Gain": 31.570578231292515
+            },
+            "Phi-DIV_P: KL": {
+                "Mean Gain": -0.04081632653061224,
+                "Median Gain": 0,
+                "Variance Gain": 61.20663265306123
+            },
+            "Phi-DIV_P: SQUARED_HELLINGER": {
+                "Mean Gain": -0.20408163265306123,
+                "Median Gain": 0,
+                "Variance Gain": 146.54081632653063
+            },
+            "Phi-DIV_P: TVD": {
+                "Mean Gain": -3.693877551020408,
+                "Median Gain": -1,
+                "Variance Gain": 154.75850340136054
+            }
+        }
+    },
+    "PRIOR": {
+        "1": {
+            "BASELINE: MSE": {
+                "Mean Gain": 17.959183673469386,
+                "Median Gain": 19,
+                "Variance Gain": 268.5399659863945
+            },
+            "OA: 0": {
+                "Mean Gain": 20.183673469387756,
+                "Median Gain": 20,
+                "Variance Gain": 159.61139455782313
+            },
+            "Phi-DIV: CHI_SQUARED": {
+                "Mean Gain": 16.387755102040817,
+                "Median Gain": 17,
+                "Variance Gain": 288.8673469387755
+            },
+            "Phi-DIV: KL": {
+                "Mean Gain": 25.20408163265306,
+                "Median Gain": 26,
+                "Variance Gain": 129.99914965986395
+            },
+            "Phi-DIV: SQUARED_HELLINGER": {
+                "Mean Gain": 22.081632653061224,
+                "Median Gain": 23,
+                "Variance Gain": 111.15986394557822
+            },
+            "Phi-DIV: TVD": {
+                "Mean Gain": -0.5918367346938775,
+                "Median Gain": 2,
+                "Variance Gain": 419.4549319727891
+            },
+            "PTS: 0": {
+                "Mean Gain": -3.4081632653061225,
+                "Median Gain": -2,
+                "Variance Gain": 563.7049319727892
+            },
+            "MSE_P: 0": {
+                "Mean Gain": 21.122448979591837,
+                "Median Gain": 21,
+                "Variance Gain": 199.35969387755102
+            },
+            "Phi-DIV_P: CHI_SQUARED": {
+                "Mean Gain": -25.53061224489796,
+                "Median Gain": -27,
+                "Variance Gain": 180.04591836734693
+            },
+            "Phi-DIV_P: KL": {
+                "Mean Gain": -16.959183673469386,
+                "Median Gain": -20,
+                "Variance Gain": 375.3732993197279
+            },
+            "Phi-DIV_P: SQUARED_HELLINGER": {
+                "Mean Gain": -6.142857142857143,
+                "Median Gain": -1,
+                "Variance Gain": 420.0416666666667
+            },
+            "Phi-DIV_P: TVD": {
+                "Mean Gain": -20.836734693877553,
+                "Median Gain": -22,
+                "Variance Gain": 233.47278911564626
+            }
+        }
+    },
+    "ALL10": {
+        "1": {
+            "BASELINE: MSE": {
+                "Mean Gain": 5.816326530612245,
+                "Median Gain": 10,
+                "Variance Gain": 488.73639455782313
+            },
+            "OA: 0": {
+                "Mean Gain": 19,
+                "Median Gain": 19,
+                "Variance Gain": 337.1666666666667
+            },
+            "Phi-DIV: CHI_SQUARED": {
+                "Mean Gain": 18.46938775510204,
+                "Median Gain": 20,
+                "Variance Gain": 236.50425170068027
+            },
+            "Phi-DIV: KL": {
+                "Mean Gain": 22.285714285714285,
+                "Median Gain": 24,
+                "Variance Gain": 244.875
+            },
+            "Phi-DIV: SQUARED_HELLINGER": {
+                "Mean Gain": 21.53061224489796,
+                "Median Gain": 25,
+                "Variance Gain": 264.1292517006803
+            },
+            "Phi-DIV: TVD": {
+                "Mean Gain": 2.6530612244897958,
+                "Median Gain": 4,
+                "Variance Gain": 564.5229591836735
+            },
+            "PTS: 0": {
+                "Mean Gain": -6.755102040816326,
+                "Median Gain": -4,
+                "Variance Gain": 523.3554421768707
+            },
+            "MSE_P: 0": {
+                "Mean Gain": 16.571428571428573,
+                "Median Gain": 18,
+                "Variance Gain": 337.16666666666663
+            },
+            "Phi-DIV_P: CHI_SQUARED": {
+                "Mean Gain": -25.244897959183675,
+                "Median Gain": -27,
+                "Variance Gain": 130.3971088435374
+            },
+            "Phi-DIV_P: KL": {
+                "Mean Gain": -16.346938775510203,
+                "Median Gain": -18,
+                "Variance Gain": 361.2729591836735
+            },
+            "Phi-DIV_P: SQUARED_HELLINGER": {
+                "Mean Gain": -2.63265306122449,
+                "Median Gain": -2,
+                "Variance Gain": 387.40391156462584
+            },
+            "Phi-DIV_P: TVD": {
+                "Mean Gain": -16.020408163265305,
+                "Median Gain": -17,
+                "Variance Gain": 253.8954081632653
+            }
+        }
+    },
+    "HEDGE": {
+        "1": {
+            "BASELINE: MSE": {
+                "Mean Gain": 20.285714285714285,
+                "Median Gain": 21,
+                "Variance Gain": 109.875
+            },
+            "OA: 0": {
+                "Mean Gain": 14.918367346938776,
+                "Median Gain": 15,
+                "Variance Gain": 213.74319727891157
+            },
+            "Phi-DIV: CHI_SQUARED": {
+                "Mean Gain": 8.428571428571429,
+                "Median Gain": 8,
+                "Variance Gain": 228.20833333333331
+            },
+            "Phi-DIV: KL": {
+                "Mean Gain": 11.612244897959183,
+                "Median Gain": 10,
+                "Variance Gain": 152.78401360544217
+            },
+            "Phi-DIV: SQUARED_HELLINGER": {
+                "Mean Gain": 12.918367346938776,
+                "Median Gain": 13,
+                "Variance Gain": 288.40986394557825
+            },
+            "Phi-DIV: TVD": {
+                "Mean Gain": 1.9183673469387754,
+                "Median Gain": 3,
+                "Variance Gain": 300.4515306122449
+            },
+            "PTS: 0": {
+                "Mean Gain": 1.530612244897959,
+                "Median Gain": -1,
+                "Variance Gain": 343.0459183673469
+            },
+            "MSE_P: 0": {
+                "Mean Gain": 22.122448979591837,
+                "Median Gain": 24,
+                "Variance Gain": 113.44302721088435
+            },
+            "Phi-DIV_P: CHI_SQUARED": {
+                "Mean Gain": -6.428571428571429,
+                "Median Gain": -6,
+                "Variance Gain": 153.75
+            },
+            "Phi-DIV_P: KL": {
+                "Mean Gain": -4.489795918367347,
+                "Median Gain": -6,
+                "Variance Gain": 106.671768707483
+            },
+            "Phi-DIV_P: SQUARED_HELLINGER": {
+                "Mean Gain": -0.061224489795918366,
+                "Median Gain": -1,
+                "Variance Gain": 190.30867346938777
+            },
+            "Phi-DIV_P: TVD": {
+                "Mean Gain": -6.918367346938775,
+                "Median Gain": -4,
+                "Variance Gain": 118.3265306122449
+            }
+        }
+    }
+}

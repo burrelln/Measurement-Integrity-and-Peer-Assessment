@@ -76,13 +76,23 @@ def run_simulation(num_iterations, num_students, continuous_effort=True, bias=Tr
         for submission in submissions:
             true_scores[submission.student_id] = submission.true_grade
             
-        mse_scores = mean_squared_error(grader_dict, num_students)
+        mse_scores = np.zeros(100)    
+        mse_dict = mean_squared_error(grader_dict)
+        for sid, score in mse_dict.items():
+            mse_scores[sid] = score
             
         mu = 7
         gamma = 1/2.1
         
-        scores, reliability, biases = mse_p_mechanism(grader_dict, students, 0, mu, gamma, True)
-        unbiased_scores, unbiased_reliability, zero_list = mse_p_mechanism(grader_dict, students, 0, mu, gamma, False)
+        scores = np.zeros(100)
+        bias_score_dict, reliability, biases = mse_p_mechanism(grader_dict, students, 0, mu, gamma, True)
+        for sid, score in bias_score_dict.items():
+            scores[sid] = score
+        
+        unbiased_scores = np.zeros(100)  
+        unbiased_score_dict, unbiased_reliability, zero_list = mse_p_mechanism(grader_dict, students, 0, mu, gamma, False)
+        for sid, score in unbiased_score_dict.items():
+            unbiased_scores[sid] = score
         
         mse_score = true_grade_mse(true_scores, mse_scores)
         consensus_mse_scores.append(mse_score)
