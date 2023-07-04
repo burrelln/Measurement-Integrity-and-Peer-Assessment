@@ -217,45 +217,6 @@ def plot_mean_aucc(results, filename):
     plt.show()
     plt.close()
     
-def plot_auc_scores(results, filename):
-    """
-    Used for Binary Effort setting. Generates a boxplot of the AUC scores of each mechanism for a fixed number of active graders.
-
-    Parameters
-    ----------
-    results : dict.
-        { mechanism: { "ROC-AUC Scores": [ score ] } },
-        where mechanism is the name of a mechanism (str, one of the keys of the global mechanism_name_map) and each score in the list is a float.
-    filename : str.
-        Name of the file used for saving the plot (as a .pdf).
-
-    Returns
-    -------
-    None.
-
-    """
-    global mechanism_name_map
-    
-    formatted_results = {"AUC": [], 
-                         "Mechanism": []
-                         }
-    
-    mechanisms = list(results.keys())
-    for mechanism in mechanisms:
-        for auc in results[mechanism]["ROC-AUC Scores"]:
-            formatted_results["AUC"].append(auc)
-            formatted_results["Mechanism"].append(mechanism_name_map[mechanism])
-            
-    results_df = pd.DataFrame(data=formatted_results)
-    _ = sns.boxplot(x="Mechanism", y="AUC", data=results_df, palette=mechanism_color_map)
-    plt.xticks(rotation=45)
-    
-    plt.tight_layout()
-    figure_file = "figures/" + filename + ".pdf"
-    plt.savefig(figure_file, dpi=300)
-    plt.show()
-    plt.close()
-    
 def plot_auc_strategic(results, filename):
     """
     Used with strategic agents to compare payments between strategic and truthful agents. 
@@ -349,7 +310,7 @@ def plot_estimation_mses(results, filename):
     
 def plot_kendall_tau(results, filename):
     """
-    Used for Continuous Effort setting. Generates a boxplot with the Kendall rank correlation coefficient (tau) scores of each mechanism.
+    Used for Continuous Effort setting. Generates a plot of the Kendall rank correlation coefficient (tau_B) scores of each mechanism.
 
     Parameters
     ----------
@@ -405,7 +366,7 @@ def plot_kendall_tau(results, filename):
 def plot_kendall_taus(results, filename):
     """
     Used with strategic agents to compare mechanism performance as the number of strategic agents varies. 
-    For each strategy, generates a boxplot with the tau scores of each mechanism as the number of strategic agents varies.
+    For each strategy, generates a plot of the average tau scores of each mechanism as the number of strategic agents varies.
 
     Parameters
     ----------
@@ -463,46 +424,6 @@ def plot_kendall_taus(results, filename):
         plt.savefig(figure_file, dpi=300)
         plt.show()
         plt.close()
-    
-def plot_kendall_tau_variances(results, filename):
-    """
-    Used for Continuous Effort setting. Generates a boxplot with the variances of the Kendall rank correlation coefficient (tau) scores of each mechanism.
-
-    Parameters
-    ----------
-    results : dict.
-        { mechanism: { "Tau Variances": [ score ] } },
-        where mechanism is the name of a mechanism (str, one of the keys of the global mechanism_name_map) and each score in the list is a float.
-    filename : str.
-        Name of the file used for saving the plot (as a .pdf).
-
-    Returns
-    -------
-    None.
-
-    """
-    global mechanism_name_map
-    
-    formatted_results = {"Variance": [], 
-                         "Mechanism": []
-                         }
-    
-    mechanisms = list(results.keys())
-    for mechanism in mechanisms:
-        for v in results[mechanism]["Tau Variances"]:
-            formatted_results["Variance"].append(v)
-            formatted_results["Mechanism"].append(mechanism_name_map[mechanism])
-            
-    results_df = pd.DataFrame(data=formatted_results)
-    ax = sns.boxplot(x="Mechanism", y="Variance", data=results_df, palette=mechanism_color_map)
-    plt.xticks(rotation=45)
-    ax.set_ylabel(r'Variance of $\tau_B$')
-    
-    plt.tight_layout()
-    figure_file = "figures/" + filename + ".pdf"
-    plt.savefig(figure_file, dpi=300)
-    plt.show()
-    plt.close()
     
 def plot_mean_rank_changes(results, filename, main=False, appendix=False):
     """

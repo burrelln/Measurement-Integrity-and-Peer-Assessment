@@ -1036,26 +1036,12 @@ def figure_D_1a():
 
 def figure_E_1a():
     
-    # filename = 'be-no_bias-phi_div-box'
-    # json_file = filename + '.json'
-    # pdf_file = 'appendix/' + filename
-    # with open(json_file,"r") as file:
-    #     data = load(file)
-    # plot_auc_scores(data, pdf_file)
-
     filename = 'be-no_bias-phi_div'
     json_file = filename + '.json'
     pdf_file = 'appendix/' + filename
     with open(json_file,"r") as file:
         data = load(file)
     #plot_mean_aucc(data, pdf_file)
-    
-    # filename = 'be-no_bias-phi_div_p-box'
-    # json_file = filename + '.json'
-    # pdf_file = 'appendix/' + filename
-    # with open(json_file,"r") as file:
-    #     data = load(file)
-    # plot_auc_scores(data, pdf_file)
 
     filename = 'be-no_bias-phi_div_p'
     json_file = filename + '.json'
@@ -1065,13 +1051,6 @@ def figure_E_1a():
         for num in data.keys():
             data[num].update(d[num])
     #plot_mean_aucc(data, pdf_file)
-    
-    # filename = 'be-no_bias-nonparam-box'
-    # json_file = filename + '.json'
-    # pdf_file = 'appendix/' + filename
-    # with open(json_file,"r") as file:
-    #     data = load(file)
-    # plot_auc_scores(data, pdf_file)
 
     filename = 'be-no_bias-nonparam'
     json_file = filename + '.json'
@@ -1082,13 +1061,6 @@ def figure_E_1a():
             data[num].update(d[num])
     #plot_mean_aucc(data, pdf_file)
     
-    # filename = 'be-no_bias-best_mechanisms-box'
-    # json_file = filename + '.json'
-    # pdf_file = 'appendix/' + filename
-    # with open(json_file,"r") as file:
-    #     data = load(file)
-    # plot_auc_scores(data, pdf_file)
-
     filename = 'be-no_bias-best_mechanisms'
     json_file = filename + '.json'
     pdf_file = 'appendix/' + filename
@@ -1096,6 +1068,46 @@ def figure_E_1a():
         d = load(file)
         for num in data.keys():
             data[num].update(d[num])
+                 
+    plot_mean_aucc(data, pdf_file)
+    
+def figure_E_1a_no_dmi():
+    
+    filename = 'be-no_bias-phi_div'
+    json_file = filename + '.json'
+    pdf_file = 'appendix/' + filename
+    with open(json_file,"r") as file:
+        data = load(file)
+    #plot_mean_aucc(data, pdf_file)
+
+    filename = 'be-no_bias-phi_div_p'
+    json_file = filename + '.json'
+    pdf_file = 'appendix/' + filename
+    with open(json_file,"r") as file:
+        d = load(file)
+        for num in data.keys():
+            data[num].update(d[num])
+    #plot_mean_aucc(data, pdf_file)
+
+    filename = 'be-no_bias-nonparam'
+    json_file = filename + '.json'
+    pdf_file = 'appendix/' + filename
+    with open(json_file,"r") as file:
+        d = load(file)
+        for num in data.keys():
+            no_dmi = d[num]
+            no_dmi.pop('DMI: 4')
+            data[num].update(no_dmi)
+    #plot_mean_aucc(data, pdf_file)
+    
+    filename = 'be-no_bias-best_mechanisms'
+    json_file = filename + '.json'
+    pdf_file = 'appendix/' + filename + '-no_dmi'
+    with open(json_file,"r") as file:
+        d = load(file)
+        for num in data.keys():
+            data[num].update(d[num])
+                 
     plot_mean_aucc(data, pdf_file)
     
 def figure_E_1b():
@@ -1106,29 +1118,55 @@ def figure_E_1b():
         data = load(file)
     plot_mean_aucc(data, pdf_file)
     
-def figure_E_1c():
-    filename = 'ce-no_bias-all'
+def figure_E_1b_no_dmi():
+    filename = 'be-bias-all'
     json_file = filename + '.json'
-    pdf_file = 'appendix/' + filename
+    pdf_file = 'appendix/' + filename + '-no_dmi'
     with open(json_file,"r") as file:
         data = load(file)
-    plot_kendall_tau(data, pdf_file)
+    for num in data.keys():
+        data[num].pop('DMI: 4')
+    plot_mean_aucc(data, pdf_file)
     
-def figure_E_1d():
+def figure_E_1c():
     filename = 'ce-bias-all'
     json_file = filename + '.json'
     pdf_file = 'appendix/' + filename
     with open(json_file,"r") as file:
         data = load(file)
+    for num in data.keys():
+        data[num].pop('DMI: 4')
     plot_kendall_tau(data, pdf_file)
     
-def figure_E_2f():
+def figure_E_1c_no_dmi():
+    filename = 'ce-bias-all'
+    json_file = filename + '.json'
+    pdf_file = 'appendix/' + filename + '-no_dmi'
+    with open(json_file,"r") as file:
+        data = load(file)
+    for num in data.keys():
+        data[num].pop('DMI: 4')
+    plot_kendall_tau(data, pdf_file)
+    
+def figure_E_2d():
     filename = 'strategic-ce-bias'
     json_file = filename + '.json'
     pdf_file = 'appendix/' + filename
     
     with open(json_file,"r") as file:
         data = load(file)
+    plot_kendall_taus(data, pdf_file)
+    
+def figure_E_2d_no_dmi():
+    filename = 'strategic-ce-bias'
+    json_file = filename + '.json'
+    pdf_file = 'appendix/' + filename + '-no_dmi'
+    
+    with open(json_file,"r") as file:
+        data = load(file)
+    for strategy in data.keys():
+        for num in data[strategy].keys():
+            data[strategy][num].pop('DMI: 4')
     plot_kendall_taus(data, pdf_file)
     
 def figure_F_1a():
@@ -1166,45 +1204,44 @@ def figure_F_3a():
 if __name__ == "__main__":
     """Uncomment a function below to create a .pdf of the associated figure from the paper."""
 
-    #figure_1a(True)
+    # figure_1a(True)
 
-    #figure_1a(False)
+    # figure_1a(False)
     
-    #figure_1b()
+    # figure_1b()
     
-    #figure_2()
+    # figure_2()
     
-    #figures_3_and_F_1b()
+    # figures_3_and_F_1b()
     
-    #figures_4_and_F_2a_and_F_2b()
+    # figures_4_and_F_2a_and_F_2b()
     
-    #figures_5_and_F_2d_and_F_2e()
+    # figures_5_and_F_2d_and_F_2e()
     
-    #figure_D_1a()
+    # figure_D_1a()
     
-    #figure_E_1a()
+    # figure_E_1a()
     
-    #figure_E_1b()
+    # figure_E_1b()
+    figure_E_1c_no_dmi()
+    # figure_E_1c()
+    figure_E_2d_no_dmi()
+    # figure_E_1d()
     
-    #figure_E_1c()
+    # figure_E_2f()
     
-    #figure_E_1d()
+    # figure_F_1a()
     
-    #figure_E_2f()
+    # figure_F_2c()
     
-    #figure_F_1a()
+    # figure_F_3a()
     
-    #figure_F_2c()
+    # print(dumps(compare_taus(), indent=2))
     
-    #figure_F_3a()
+    # metric = "Binary AUCs"
+    # metric = "Taus"
+    # metric = "Rhos"
     
-    #print(dumps(compare_taus(), indent=2))
-    
-    #metric = "Binary AUCs"
-    #metric = "Quinary AUCs"
-    #metric = "Taus"
-    #metric = "Rhos"
-    
-    #d = compare_metrics(metric)
-    #l = [(key, val["Real"]) for key, val in d.items()]
-    #print(sorted(l, key=lambda x: x[1], reverse=True))
+    # d = compare_metrics(metric)
+    # l = [(key, val["Real"]) for key, val in d.items()]
+    # print(sorted(l, key=lambda x: x[1], reverse=True))
