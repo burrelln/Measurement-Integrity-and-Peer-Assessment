@@ -190,10 +190,10 @@ def run_simulation(assignment_partition, mechanism, mechanism_param, semester, c
                 """
                 
                 elif mechanism == "MSE_P":
-                    mse_p_mechanism(grader_dict, students, assignment, mu, gamma, False)
+                    mse_p_mechanism(grader_dict, students, assignment, mu, gamma, True)
                     
                 elif mechanism == "Phi-DIV_P":
-                    parametric_phi_divergence_pairing_mechanism(grader_dict, students, assignment, mu, gamma, False, mechanism_param)
+                    parametric_phi_divergence_pairing_mechanism(grader_dict, students, assignment, mu, gamma, True, mechanism_param)
                     
                 else:
                     print("Error: The given mechanism name does not match any of the options.")
