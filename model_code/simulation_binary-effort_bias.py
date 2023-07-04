@@ -20,7 +20,7 @@ from mechanisms.parametric_mse import mse_p_mechanism
 from mechanisms.peer_truth_serum import pts_mechanism
 
 from evaluation import roc_auc
-from graphing import plot_median_auc, plot_auc_scores
+from graphing import plot_mean_aucc, plot_auc_scores
 
 import warnings
 
@@ -225,7 +225,7 @@ def simulate__vary_num_active_graders(mechanisms, filename):
     """
     Graphing the results in the figures directory
     """
-    plot_median_auc(results, filename)
+    plot_mean_aucc(results, filename)
 
 def simulate__fix_num_active_graders(mechanisms, filename):
     """
@@ -284,32 +284,32 @@ if __name__ == "__main__":
         
             #NON-PARAMETRIC MECHANISMS
             
-            #("BASELINE", "MSE"),
-            #("DMI", "4"),
-            #("OA", "0"),
-            #("Phi-DIV", "CHI_SQUARED"),
-            #("Phi-DIV", "KL"),
-            #("Phi-DIV", "SQUARED_HELLINGER"),
-            #("Phi-DIV", "TVD"),
-            #("PTS", "0"),
+            ("BASELINE", "MSE"),
+            ("DMI", "4"),
+            ("OA", "0"),
+            ("Phi-DIV", "CHI_SQUARED"),
+            ("Phi-DIV", "KL"),
+            ("Phi-DIV", "SQUARED_HELLINGER"),
+            ("Phi-DIV", "TVD"),
+            ("PTS", "0"),
             
             #PARAMETRIC MECHANISMS
             
-            #("MSE_P", "0"),
-            #("Phi-DIV_P", "CHI_SQUARED"),
-            #("Phi-DIV_P", "KL"),
-            #("Phi-DIV_P", "SQUARED_HELLINGER"),
-            #("Phi-DIV_P", "TVD"),
+            ("MSE_P", "0"),
+            ("Phi-DIV_P", "CHI_SQUARED"),
+            ("Phi-DIV_P", "KL"),
+            ("Phi-DIV_P", "SQUARED_HELLINGER"),
+            ("Phi-DIV_P", "TVD"),
             
         ]
     
     """
     Change the filename before running a simulation to prevent overwriting previous results.
     """
-    filename = "be-bias-filename"
+    filename = "be-bias-all"
     
     """
     Uncomment a function below to run an experiment.
     """
-    #simulate__vary_num_active_graders(mechanisms, filename)
+    simulate__vary_num_active_graders(mechanisms, filename)
     #simulate__fix_num_active_graders(mechanisms, filename)

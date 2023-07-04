@@ -164,9 +164,9 @@ estimation_procedure_color_map = {
             r'Procedure-NB': '#a6cee3'
     }
 
-def plot_median_auc(results, filename):
+def plot_mean_aucc(results, filename):
     """
-    Used for Binary Effort setting. Generates a lineplot of the median AUC as the number of active graders varies.
+    Used for Binary Effort setting. Generates a lineplot of the mean AUCC as the number of active graders varies.
 
     Parameters
     ----------
@@ -184,19 +184,32 @@ def plot_median_auc(results, filename):
     global mechanism_name_map
     
     formatted_results = {"Number of Active Graders": [], 
-                         "Median AUC": [],
+                         "AUCC": [],
                          "Mechanism": []
                          }
     
+    final_y_vals = []
+    record_val = False
     for key in results.keys():
         mechanisms = list(results[key].keys())
+        if key == max(results.keys()):
+            record_val = True
         for mechanism in mechanisms:
+            val = 2*results[key][mechanism]["Mean ROC-AUC"] - 1
             formatted_results["Number of Active Graders"].append(key)
-            formatted_results["Median AUC"].append(results[key][mechanism]["Median ROC-AUC"])
+            formatted_results["AUCC"].append(val)
             formatted_results["Mechanism"].append(mechanism_name_map[mechanism])
+            if record_val:
+                final_y_vals.append(val)
             
     results_df = pd.DataFrame(data=formatted_results)
-    _ = sns.lineplot(x="Number of Active Graders", y="Median AUC", hue="Mechanism", style="Mechanism", markers=mechanism_marker_map, dashes=mechanism_dash_map, data=results_df, palette=mechanism_color_map)
+    _ = sns.lineplot(x="Number of Active Graders", y="AUCC", hue="Mechanism", style="Mechanism", markers=mechanism_marker_map, dashes=mechanism_dash_map, data=results_df, palette=mechanism_color_map)
+    
+    order = list(range(len(mechanisms)))
+    order.sort(key = lambda i: final_y_vals[i], reverse=True)
+    
+    handles, labels = plt.gca().get_legend_handles_labels()
+    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], bbox_to_anchor=(1.0, 1.0))
     
     plt.tight_layout()
     figure_file = "figures/" + filename + ".pdf"
@@ -353,19 +366,34 @@ def plot_kendall_tau(results, filename):
     """
     global mechanism_name_map
     
-    formatted_results = {"Tau": [], 
+    formatted_results = {"Number of Assignments Per Semester": [], 
+                         "Tau": [],
                          "Mechanism": []
                          }
     
-    mechanisms = list(results.keys())
-    for mechanism in mechanisms:
-        for t in results[mechanism]["Tau Scores"]:
-            formatted_results["Tau"].append(t)
+    final_y_vals = []
+    record_val = False
+    for key in results.keys():
+        mechanisms = list(results[key].keys())
+        if key == max(results.keys()):
+            record_val = True
+        for mechanism in mechanisms:
+            val = mean(results[key][mechanism]["Tau Scores"])
+            formatted_results["Number of Assignments Per Semester"].append(key)
+            formatted_results["Tau"].append(val)
             formatted_results["Mechanism"].append(mechanism_name_map[mechanism])
+            if record_val:
+                final_y_vals.append(val)
             
     results_df = pd.DataFrame(data=formatted_results)
-    _ = sns.boxplot(x="Mechanism", y="Tau", data=results_df, palette=mechanism_color_map)
-    plt.xticks(rotation=45)
+    _ = sns.lineplot(x="Number of Assignments Per Semester", y="Tau", hue="Mechanism", style="Mechanism", markers=mechanism_marker_map, dashes=mechanism_dash_map, data=results_df, palette=mechanism_color_map)
+    
+    order = list(range(len(mechanisms)))
+    order.sort(key = lambda i: final_y_vals[i], reverse=True)
+    
+    handles, labels = plt.gca().get_legend_handles_labels()
+    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], bbox_to_anchor=(1.0, 1.0))
+    
     _.set_ylabel(r'$\tau_B$')
     
     plt.tight_layout()
@@ -397,35 +425,41 @@ def plot_kendall_taus(results, filename):
     mechanisms = []
     strategies = []
     
-    formatted_results = {"Number of Strategic Graders": [], 
-                         "Tau": [],
-                         "Mechanism": [],
-                         "Strategy": []
-                         }
-    
     strategies = list(results.keys())
     for strategy in results.keys():
+        formatted_results = {"Number of Strategic Graders": [], 
+                             "Tau": [],
+                             "Mechanism": [],
+                             }
+        final_y_vals = []
+        record_val = False
         for key in results[strategy].keys():
-            if int(key) in [0, 20, 40, 60, 80, 100]: 
-                mechanisms = list(results[strategy][key].keys())
-                for mechanism in mechanisms:
-                    for t in results[strategy][key][mechanism]["Tau Scores"]:
-                        formatted_results["Number of Strategic Graders"].append(key)
-                        formatted_results["Tau"].append(t)
-                        formatted_results["Mechanism"].append(mechanism_name_map[mechanism])
-                        formatted_results["Strategy"].append(strategy)
+            mechanisms = list(results[strategy][key].keys())
+            if key == max(results[strategy].keys()):
+                record_val = True
+            for mechanism in mechanisms:
+                val = mean(results[strategy][key][mechanism]["Tau Scores"])
+                formatted_results["Number of Strategic Graders"].append(key)
+                formatted_results["Tau"].append(val)
+                formatted_results["Mechanism"].append(mechanism_name_map[mechanism])
+                if record_val:
+                    final_y_vals.append(val)
             
-    results_df = pd.DataFrame(data=formatted_results)
-    
-    for strategy in strategies:
         title = strategy
-        strategy_df = results_df.loc[results_df["Strategy"] == title]
-        ax = sns.boxplot(x="Number of Strategic Graders", y="Tau", hue="Mechanism", palette=mechanism_color_map, data=strategy_df)
-        ax.set_ylabel(r'$\tau_B$')
+        results_df = pd.DataFrame(data=formatted_results)
+        _ = sns.lineplot(x="Number of Strategic Graders", y="Tau", hue="Mechanism", style="Mechanism", markers=mechanism_marker_map, dashes=mechanism_dash_map, data=results_df, palette=mechanism_color_map)
+        
+        order = list(range(len(mechanisms)))
+        order.sort(key = lambda i: final_y_vals[i], reverse=True)
+        
+        handles, labels = plt.gca().get_legend_handles_labels()
+        plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], bbox_to_anchor=(1.0, 1.0))
+        
+        _.set_ylabel(r'$\tau_B$')
         
         plt.title(title)
         plt.tight_layout()
-        figure_file = "figures/" + filename + "-" + strategy + ".pdf"
+        figure_file = f"figures/{filename}-{strategy}.pdf"
         plt.savefig(figure_file, dpi=300)
         plt.show()
         plt.close()
@@ -915,7 +949,7 @@ def plot_mi_mse_metrics_highlighted_no_dmi(results, filename):
             size = 2
         for num, metrics in results[mechanism].items():
             num_assignments = int(num)
-            formatted_results["Mean AUC (Binary)"].append(mean(metrics['Binary AUCs']))
+            formatted_results["Mean AUC (Binary)"].append(2*mean(metrics['Binary AUCs']) - 1) # Transform to correlation function
             formatted_results["Mean AUC (Quinary)"].append(mean(metrics['Quinary AUCs']))
             formatted_results["Mean Tau"].append(mean(metrics['Taus']))
             formatted_results["Mean Rho"].append(mean(metrics['Rhos']))
@@ -927,22 +961,22 @@ def plot_mi_mse_metrics_highlighted_no_dmi(results, filename):
     
     
     metrics_formatted = {
-        "Mean AUC (Binary)": r'Mean AUC (Binary)', 
-        "Mean AUC (Quinary)": r'Mean AUC (Quinary)',
-        "Mean Tau": r'Mean Rank Correlation ($\tau_B$)',
-        "Mean Rho": r'Mean Correlation ($\rho$)'
+        "Mean AUC (Binary)": r'Coarse Ordinal Measurement Integrity', 
+        #"Mean AUC (Quinary)": r'Mean AUC (Quinary)',
+        "Mean Tau": r'Fine Ordinal Measurement Integrity',
+        "Mean Rho": r'Interval Measurement Integrity'
                }
     
     metrics_y = {
-        "Mean AUC (Binary)": r'AUC', 
-        "Mean AUC (Quinary)": r'AUC',
+        "Mean AUC (Binary)": r'AUCC', 
+        #"Mean AUC (Quinary)": r'AUC',
         "Mean Tau": r'$\tau_B$',
         "Mean Rho": r'$\rho$'
                }
     
     metrics_code = {
         "Mean AUC (Binary)": "bAUC", 
-        "Mean AUC (Quinary)": "qAUC",
+        #"Mean AUC (Quinary)": "qAUC",
         "Mean Tau": "tau",
         "Mean Rho": "rho",
                }
@@ -1313,7 +1347,7 @@ def plot_mi_mse_other_metrics_real_data(results, semester, filename):
             size = 2
         for num, metrics in results[mechanism].items():
             num_assignments = int(num)
-            formatted_results["Mean AUC (Binary)"].append(mean(metrics['Binary AUCs']))
+            formatted_results["Mean AUC (Binary)"].append(2*mean(metrics['Binary AUCs']) - 1) # Transform to correlation function
             formatted_results["Mean AUC (Quinary)"].append(mean(metrics['Quinary AUCs']))
             formatted_results["Mean Rho"].append(mean(metrics['Rhos']))
             formatted_results["Mechanism"].append(mechanism_name_map[mechanism])
@@ -1324,20 +1358,20 @@ def plot_mi_mse_other_metrics_real_data(results, semester, filename):
     
     
     metrics_formatted = {
-        "Mean AUC (Binary)": r'Mean AUC (Binary)', 
-        "Mean AUC (Quinary)": r'Mean AUC (Quinary)',
-        "Mean Rho": r'Mean Correlation ($\rho$)'
+        "Mean AUC (Binary)": r'Coarse Ordinal Measurement Integrity', 
+        #"Mean AUC (Quinary)": r'Mean AUC (Quinary)',
+        "Mean Rho": r'Interval Measurement Integrity'
                }
     
     metrics_y = {
-        "Mean AUC (Binary)": r'AUC', 
-        "Mean AUC (Quinary)": r'AUC',
+        "Mean AUC (Binary)": r'AUCC', 
+        #"Mean AUC (Quinary)": r'AUC',
         "Mean Rho": r'$\rho$'
                }
     
     metrics_code = {
         "Mean AUC (Binary)": "bAUC", 
-        "Mean AUC (Quinary)": "qAUC",
+        #"Mean AUC (Quinary)": "qAUC",
         "Mean Rho": "rho",
                }
     
@@ -1862,7 +1896,7 @@ def plot_mi_mse_tau_real_data(results, semester, filename):
     
     
     metrics_formatted = {
-        "Mean Tau": r'Mean Rank Correlation ($\tau_B$)',
+        "Mean Tau": r'Fine Ordinal Measurement Integrity',
                }
     
     metrics_y = {

@@ -331,7 +331,8 @@ def figure_1a(poster_version=False):
     be_accuracy_list = []
     for mechanism in data["Mechanism"]:
         key = old_names[mechanism]
-        values = [mean(json_data[key][str(num)]["Binary AUCs"]) for num in range(1, 16)]
+        #values = [mean(json_data[key][str(num)]["Binary AUCs"]) for num in range(1, 16)] # Current arXiv Version 1/8/23
+        values = [mean(json_data[key][str(num)]["Taus"]) for num in range(1, 16)] # Current arXiv Version 1/8/23
         value = mean(values)
         be_accuracy_list.append(value)
     
@@ -451,24 +452,44 @@ def figure_1a(poster_version=False):
         
         # order = [0,4,2,3,5,1] # When Informed Truthful is included (6 labels)
         order=[0,3,1,2] # When Informed Truthful is not included
-        plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], title=r'Equilibrium Concept')
+        plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], title=r'Equilibrium Concept', loc='upper center')
         
         # label points on the plot
         for x, y, s in zip(data["Robustness"], data["Accuracy"], data["Mechanism"]):
-            if s == r'$\Phi$-Div: $H^2$' or s == r'MSE' or s == r'MSE$_P$':
-                x_val = x - 2
-                y_val = y - 0.025
+            if s == r'MSE$_P$':
+                x_val = x - 1.6
+                y_val = y - 0.03
+                
+            elif s == r'MSE':
+                x_val = x - 1.6
+                y_val = y - 0.03
+                
+            elif s == r'PTS':
+                x_val = x - 1.35
+                y_val = y + 0.015
+                
+            elif s == r'OA':
+                x_val = x - 1.11
+                y_val = y + 0.015
+                
+            elif s == r'$\Phi$-Div: $H^2$':
+                x_val = x - 2.25
+                y_val = y - 0.03
+                
+            elif s == r'$\Phi$-Div: KL':
+                x_val = x - 2.25
+                y_val = y + 0.015
                 
             elif s == r'$\Phi$-Div$_P$: TVD':
                 x_val = x - 6.5
                 y_val = y + 0.015
                 
-            elif s == r'$\Phi$-Div$_P$: KL' or s == r'$\Phi$-Div$_P$: $\chi^2$':
+            elif s == r'$\Phi$-Div$_P$: KL' or s == r'$\Phi$-Div$_P$: $\chi^2$' or s == r'$\Phi$-Div$_P$: $H^2$':
                 x_val = x - 2.5
                 y_val = y + 0.015
                 
             else:
-                x_val = x - 2
+                x_val = x - 2.5
                 y_val = y + 0.015
             
                 
@@ -485,7 +506,7 @@ def figure_1a(poster_version=False):
         
         ax.set_ylabel(r'Measurement Integrity')
         ax.set_xlabel(r'Robustness Against Strategic Reporting')
-        plt.title(r'Apparent Trade-off Between Integrity and Robustness')
+        plt.title(r'Apparent Trade-off Between Integrity and Robustness (ABM)')
         plt.tight_layout()
         filename = "2D-tradeoff"
         figure_file = "figures/main_paper/" + filename + ".pdf"
@@ -547,7 +568,8 @@ def figure_1b():
     cm = sns.color_palette("magma")
     guarantee_color_map = {key:cm[i] for i, key in enumerate(guarantee_value_map.keys())}
     
-    accuracy_dict = compare_metrics_max_min_mean("Binary AUCs")
+    #accuracy_dict = compare_metrics_max_min_mean("Binary AUCs")
+    accuracy_dict = compare_metrics_max_min_mean("Taus")
     coordinate_dict = {mech:[0, 0, 0, d["Mean"], d["Min"], d["Max"]] for mech, d in accuracy_dict.items()}
         
     strategies = [
@@ -629,7 +651,7 @@ def figure_1b():
     
     # order = [0,4,2,3,5,1] # When Informed Truthful is included (6 labels)
     order=[0,3,1,2] # When Informed Truthful is not included
-    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], title=r'Equilibrium Concept')
+    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], title=r'Equilibrium Concept', loc='upper right')
     
     
     #ax.errorbar(data["Robustness"], data["Accuracy"], yerr=[data["ymin"], data["ymax"]], xerr=[data["xmin"], data["xmax"]], fmt='')
@@ -637,56 +659,56 @@ def figure_1b():
     # label points on the plot
     for x, y, s in zip(data["Robustness"], data["Accuracy"], data["Mechanism"]):
         if s == r'MSE':
-            x_val = x - 1
-            y_val = y - 0.02
+            x_val = x - 1.45
+            y_val = y - 0.03
             
         elif s == r'MSE$_P$':
             x_val = x - 1.5
-            y_val = y - 0.02
+            y_val = y - 0.03
             
         elif s == r'$\Phi$-Div$_P$: $H^2$':
-            x_val = x - 4
-            y_val = y - 0.02
+            x_val = x - 3.5
+            y_val = y + 0.02
             
         elif s == r'$\Phi$-Div$_P$: KL':
-            x_val = x - 2.5
-            y_val = y - 0.02
+            x_val = x - 3.5
+            y_val = y - 0.03
             
         elif s == r'$\Phi$-Div: KL':
-            x_val = x - 3
-            y_val = y - 0.025
+            x_val = x - 3.5
+            y_val = y - 0.03
             
         elif s == r'$\Phi$-Div: $H^2$':
-            x_val = x - 2.5
-            y_val = y + 0.015
+            x_val = x - 3.5
+            y_val = y + 0.02
         
         elif s == r'$\Phi$-Div$_P$: TVD':
-            x_val = x - 5
-            y_val = y + 0.015
+            x_val = x - 3.5
+            y_val = y + 0.02
             
         elif s == r'$\Phi$-Div: TVD':
-            x_val = x - 4.5
-            y_val = y + 0.015
+            x_val = x - 3.5
+            y_val = y + 0.0175
             
         elif s == r'$\Phi$-Div$_P$: $\chi^2$':
-            x_val = x - 3
-            y_val = y + 0.015
+            x_val = x - 3.5
+            y_val = y + 0.02
             
         elif s == r'$\Phi$-Div: $\chi^2$':
-            x_val = x - 2
-            y_val = y + 0.015
+            x_val = x - 3.5
+            y_val = y + 0.0175
             
         elif s == r'PTS':
-            x_val = x - 1.5
-            y_val = y + 0.01
+            x_val = x - 1.4
+            y_val = y + 0.015
             
         elif s == r'OA':
             x_val = x - 1
-            y_val = y + 0.01
+            y_val = y + 0.015
             
         else:
-            x_val = x - 0.5
-            y_val = y + 0.01
+            x_val = x - 1
+            y_val = y + 0.015
             
         plt.text(x = x_val, # x-coordinate position of data label
         y = y_val, # y-coordinate position of data label
@@ -705,7 +727,7 @@ def figure_1b():
     
     ax.set_ylabel(r'Measurement Integrity')
     ax.set_xlabel(r'Robustness Against Strategic Reporting')
-    plt.title(r'Apparent Trade-off Between Integrity and Robustness')
+    plt.title(r'Apparent Trade-off Between Integrity and Robustness (Real Data)')
     plt.tight_layout()
     filename = "2D-tradeoff-real"
     figure_file = "figures/main_paper/" + filename + ".pdf"
@@ -919,8 +941,8 @@ def figure_D_1a():
     be_accuracy_list = []
     for mechanism in data["Mechanism"]:
         key = old_names[mechanism]
-        values = [json_data[str(num)][key]["Median ROC-AUC"] for num in range(10, 100, 10)]
-        value = mean(values)
+        values = [json_data[str(num)][key]["Mean ROC-AUC"] for num in range(10, 100, 10)]
+        value = 2*mean(values) - 1 # Transform to correlation function
         be_accuracy_list.append(value)
         
     data["Accuracy"] = be_accuracy_list
@@ -969,27 +991,27 @@ def figure_D_1a():
     for x, y, s in zip(data["Robustness"], data["Accuracy"], data["Mechanism"]):
         if s == r'$\Phi$-Div: $H^2$' or s == r'MCC' or s == r'AMSE$_P$':
             x_val = x - 2
-            y_val = y - 0.025
+            y_val = y - 0.05
             
         elif s == r'$\Phi$-Div$_P$: TVD':
             x_val = x - 6.5
-            y_val = y + 0.015
+            y_val = y + 0.03
             
         elif s == r'$\Phi$-Div$_P$: KL' or s == r'$\Phi$-Div$_{P}^*$: KL' or s == r'$\Phi$-Div$_{P}^*$: TVD':
             x_val = x - 2.5
-            y_val = y + 0.015
+            y_val = y + 0.03
             
         elif s == r'$\Phi$-Div$_{P}^*$: $\chi^2$':
             x_val = x - 8.5
-            y_val = y - 0.005
+            y_val = y - 0.01
             
         elif s == r'$\Phi$-Div$_P$: $\chi^2$' or s == r'$\Phi$-Div$_{P}^*$: $H^2$':
             x_val = x - 2.5
-            y_val = y - 0.03
+            y_val = y - 0.05
             
         else:
-            x_val = x - 2
-            y_val = y + 0.015
+            x_val = x - 1.5
+            y_val = y + 0.03
             
         plt.text(x = x_val, # x-coordinate position of data label
         y = y_val, # y-coordinate position of data label
@@ -1002,7 +1024,7 @@ def figure_D_1a():
     ax.spines['top'].set_visible(False)    
     ax.set_facecolor('gainsboro')
     
-    ax.set_ylabel(r'Measurement Integrity')
+    ax.set_ylabel(r'(Coarse Ordinal) Measurement Integrity')
     ax.set_xlabel(r'Robustness Against Strategic Reporting')
     plt.title(r'Apparent Trade-off Between Integrity and Robustness')
     plt.tight_layout()
@@ -1014,121 +1036,93 @@ def figure_D_1a():
 
 def figure_E_1a():
     
-    filename = 'be-no_bias-phi_div-box'
-    json_file = filename + '.json'
-    pdf_file = 'appendix/' + filename
-    with open(json_file,"r") as file:
-        data = load(file)
-    plot_auc_scores(data, pdf_file)
+    # filename = 'be-no_bias-phi_div-box'
+    # json_file = filename + '.json'
+    # pdf_file = 'appendix/' + filename
+    # with open(json_file,"r") as file:
+    #     data = load(file)
+    # plot_auc_scores(data, pdf_file)
 
     filename = 'be-no_bias-phi_div'
     json_file = filename + '.json'
     pdf_file = 'appendix/' + filename
     with open(json_file,"r") as file:
         data = load(file)
-    plot_median_auc(data, pdf_file)
+    #plot_mean_aucc(data, pdf_file)
     
-    filename = 'be-no_bias-phi_div_p-box'
-    json_file = filename + '.json'
-    pdf_file = 'appendix/' + filename
-    with open(json_file,"r") as file:
-        data = load(file)
-    plot_auc_scores(data, pdf_file)
+    # filename = 'be-no_bias-phi_div_p-box'
+    # json_file = filename + '.json'
+    # pdf_file = 'appendix/' + filename
+    # with open(json_file,"r") as file:
+    #     data = load(file)
+    # plot_auc_scores(data, pdf_file)
 
     filename = 'be-no_bias-phi_div_p'
     json_file = filename + '.json'
     pdf_file = 'appendix/' + filename
     with open(json_file,"r") as file:
-        data = load(file)
-    plot_median_auc(data, pdf_file)
+        d = load(file)
+        for num in data.keys():
+            data[num].update(d[num])
+    #plot_mean_aucc(data, pdf_file)
     
-    filename = 'be-no_bias-nonparam-box'
-    json_file = filename + '.json'
-    pdf_file = 'appendix/' + filename
-    with open(json_file,"r") as file:
-        data = load(file)
-    plot_auc_scores(data, pdf_file)
+    # filename = 'be-no_bias-nonparam-box'
+    # json_file = filename + '.json'
+    # pdf_file = 'appendix/' + filename
+    # with open(json_file,"r") as file:
+    #     data = load(file)
+    # plot_auc_scores(data, pdf_file)
 
     filename = 'be-no_bias-nonparam'
     json_file = filename + '.json'
     pdf_file = 'appendix/' + filename
     with open(json_file,"r") as file:
-        data = load(file)
-    plot_median_auc(data, pdf_file)
+        d = load(file)
+        for num in data.keys():
+            data[num].update(d[num])
+    #plot_mean_aucc(data, pdf_file)
     
-    filename = 'be-no_bias-best_mechanisms-box'
-    json_file = filename + '.json'
-    pdf_file = 'appendix/' + filename
-    with open(json_file,"r") as file:
-        data = load(file)
-    plot_auc_scores(data, pdf_file)
+    # filename = 'be-no_bias-best_mechanisms-box'
+    # json_file = filename + '.json'
+    # pdf_file = 'appendix/' + filename
+    # with open(json_file,"r") as file:
+    #     data = load(file)
+    # plot_auc_scores(data, pdf_file)
 
     filename = 'be-no_bias-best_mechanisms'
     json_file = filename + '.json'
     pdf_file = 'appendix/' + filename
     with open(json_file,"r") as file:
-        data = load(file)
-    plot_median_auc(data, pdf_file)
+        d = load(file)
+        for num in data.keys():
+            data[num].update(d[num])
+    plot_mean_aucc(data, pdf_file)
     
 def figure_E_1b():
-    filename = 'be-bias-nonparam-box'
+    filename = 'be-bias-all'
     json_file = filename + '.json'
     pdf_file = 'appendix/' + filename
     with open(json_file,"r") as file:
         data = load(file)
-    plot_auc_scores(data, pdf_file)
-    
-    filename = 'be-bias-nonparam'
-    json_file = filename + '.json'
-    pdf_file = 'appendix/' + filename
-    with open(json_file,"r") as file:
-        data = load(file)
-    plot_median_auc(data, pdf_file)
-
-    filename = 'be-bias-param_and_baseline-box'
-    json_file = filename + '.json'
-    pdf_file = 'appendix/' + filename
-    with open(json_file,"r") as file:
-        data = load(file)
-    plot_auc_scores(data, pdf_file)
-
-    filename = 'be-bias-param_and_baseline'
-    json_file = filename + '.json'
-    pdf_file = 'appendix/' + filename
-    with open(json_file,"r") as file:
-        data = load(file)
-    plot_median_auc(data, pdf_file)
+    plot_mean_aucc(data, pdf_file)
     
 def figure_E_1c():
-    filename = 'ce-bias-nonparam'
+    filename = 'ce-no_bias-all'
     json_file = filename + '.json'
     pdf_file = 'appendix/' + filename
     with open(json_file,"r") as file:
         data = load(file)
     plot_kendall_tau(data, pdf_file)
     
-    filename = 'ce-bias-variance_of_ranking_quality-nonparam'
-    json_file = filename + '.json'
-    pdf_file = 'appendix/' + filename
-    with open(json_file,"r") as file:
-        data = load(file)
-    plot_kendall_tau_variances(data, pdf_file)
-    
-    filename = 'ce-bias-param'
+def figure_E_1d():
+    filename = 'ce-bias-all'
     json_file = filename + '.json'
     pdf_file = 'appendix/' + filename
     with open(json_file,"r") as file:
         data = load(file)
     plot_kendall_tau(data, pdf_file)
-
-    filename = 'ce-bias-variance_of_ranking_quality-param'
-    json_file = filename + '.json'
-    pdf_file = 'appendix/' + filename
-    with open(json_file,"r") as file:
-        data = load(file)
-    plot_kendall_tau_variances(data, pdf_file)
     
-def figure_E_2d():
+def figure_E_2f():
     filename = 'strategic-ce-bias'
     json_file = filename + '.json'
     pdf_file = 'appendix/' + filename
@@ -1172,35 +1166,37 @@ def figure_F_3a():
 if __name__ == "__main__":
     """Uncomment a function below to create a .pdf of the associated figure from the paper."""
 
-    figure_1a(True)
+    #figure_1a(True)
 
-    figure_1a(False)
+    #figure_1a(False)
     
-    figure_1b()
+    #figure_1b()
     
-    figure_2()
+    #figure_2()
     
-    figures_3_and_F_1b()
+    #figures_3_and_F_1b()
     
-    figures_4_and_F_2a_and_F_2b()
+    #figures_4_and_F_2a_and_F_2b()
     
-    figures_5_and_F_2d_and_F_2e()
+    #figures_5_and_F_2d_and_F_2e()
     
-    figure_D_1a()
+    #figure_D_1a()
     
-    figure_E_1a()
+    #figure_E_1a()
     
-    figure_E_1b()
+    #figure_E_1b()
     
-    figure_E_1c()
+    #figure_E_1c()
     
-    figure_E_2d()
+    #figure_E_1d()
     
-    figure_F_1a()
+    #figure_E_2f()
     
-    figure_F_2c()
+    #figure_F_1a()
     
-    figure_F_3a()
+    #figure_F_2c()
+    
+    #figure_F_3a()
     
     #print(dumps(compare_taus(), indent=2))
     
