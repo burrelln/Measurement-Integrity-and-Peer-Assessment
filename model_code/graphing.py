@@ -1098,7 +1098,6 @@ def plot_mi_mse_metrics_other(results, filename):
                          "Size": []
                          }
     
-    
     for mechanism in mechanisms:
         size = 1 
         if mechanism in ("Phi-DIV_P: KL", "Phi-DIV_P: SQUARED_HELLINGER"):

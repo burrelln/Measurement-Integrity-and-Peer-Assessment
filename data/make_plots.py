@@ -324,9 +324,15 @@ def figure_1a(poster_version=False):
     json_file = filename + '.json'
     with open(json_file,"r") as file:
         d = load(file)
-        json_data.update(d)
+    json_data.update(d)
         
     json_data.pop("DMI: 4")
+    
+    filename = 'payments-vs-mse_mse-p' 
+    json_file = filename + '.json'
+    with open(json_file,"r") as file:
+        d = load(file)
+    json_data.update(d) # Update to use up-to-date MSE_P data (improved estimate of consensus grade)
     
     be_accuracy_list = []
     for mechanism in data["Mechanism"]:
@@ -499,6 +505,7 @@ def figure_1a(poster_version=False):
             color = 'black') # set colour of line     
         
         ax = plt.gca()
+        ax.set_yticks([0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8])
         # Hide the right and top spines
         ax.spines['right'].set_visible(False)
         ax.spines['top'].set_visible(False)    
@@ -736,14 +743,23 @@ def figure_1b():
     plt.close()
 
 def figure_2():
+    
+    filename = 'payments-vs-mse_mse-p'
+    json_file = filename + '.json'
+    pdf_file = 'main_paper/mi_mse_metrics_with_bias_no-dmi_updated'
+    with open(json_file,"r") as file:
+        more_data = load(file)
+    
     filename = 'payments-vs-mse_with-bias-in-model'
     json_file = filename + '.json'
-    pdf_file = 'main_paper/mi_mse_metrics_with_bias_no-dmi'
     with open(json_file,"r") as file:
         data = load(file)
+        for key in data.keys():
+            if key in more_data.keys():
+                data[key] = more_data[key]
     plot_mi_mse_metrics_highlighted_no_dmi(data, pdf_file)
 
-def figures_3_and_F_1b():
+def figures_3_and_F_1a():
     for semester in ["Spring17", "Fall17", "Spring19", "Fall19"]:
         name = ' 1'.join(semester.split('1'))
         filename = f'payments-vs-mse_{semester}_full'
@@ -1169,14 +1185,6 @@ def figure_E_2d_no_dmi():
             data[strategy][num].pop('DMI: 4')
     plot_kendall_taus(data, pdf_file)
     
-def figure_F_1a():
-    filename = 'payments-vs-mse_with-bias-in-model'
-    json_file = filename + '.json'
-    pdf_file = 'appendix/mi_mse_metrics_with_bias_other'
-    with open(json_file,"r") as file:
-        data = load(file)
-    plot_mi_mse_metrics_other(data, pdf_file)
-    
 def figure_F_2c():
     filename = 'truthful_vs_strategic_payments-ce-bias'
     json_file = filename + '.json'
@@ -1212,7 +1220,7 @@ if __name__ == "__main__":
     
     # figure_2()
     
-    # figures_3_and_F_1b()
+    # figures_3_and_F_1a()
     
     # figures_4_and_F_2a_and_F_2b()
     
@@ -1223,14 +1231,12 @@ if __name__ == "__main__":
     # figure_E_1a()
     
     # figure_E_1b()
-    figure_E_1c_no_dmi()
+    
     # figure_E_1c()
-    figure_E_2d_no_dmi()
+    
     # figure_E_1d()
     
     # figure_E_2f()
-    
-    # figure_F_1a()
     
     # figure_F_2c()
     
