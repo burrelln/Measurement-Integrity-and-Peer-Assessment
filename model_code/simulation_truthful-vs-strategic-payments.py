@@ -119,13 +119,13 @@ def run_simulation(num_iterations, num_assignments, strategy_map, mechanism, mec
                 mu = 7
                 gamma = 1/2.1
                 
-                mse_p_mechanism(grader_dict, students, assignment, mu, gamma, True)
+                mse_p_mechanism(grader_dict, students, assignment, mu, gamma, True, False)
             
             elif mechanism == "Phi-DIV_P":
                 mu = 7
                 gamma = 1/2.1
                 
-                parametric_phi_divergence_pairing_mechanism(grader_dict, students, assignment, mu, gamma, True, mechanism_param)
+                parametric_phi_divergence_pairing_mechanism(grader_dict, students, assignment, mu, gamma, False, mechanism_param)
                 
             else:
                 print("Error: The given mechanism name does not match any of the options.")

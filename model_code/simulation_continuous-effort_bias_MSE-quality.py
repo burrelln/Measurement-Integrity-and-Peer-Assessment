@@ -127,7 +127,7 @@ def run_simulation(num_iterations, num_assignments, num_students, mechanism, mec
                 mu = 7
                 gamma = 1/2.1
                 
-                parametric_phi_divergence_pairing_mechanism(grader_dict, students, assignment, mu, gamma, True, mechanism_param)
+                parametric_phi_divergence_pairing_mechanism(grader_dict, students, assignment, mu, gamma, False, mechanism_param)
                 
             else:
                 print("Error: The given mechanism name does not match any of the options.")
@@ -303,7 +303,7 @@ if __name__ == "__main__":
             
             #PARAMETRIC MECHANISMS
             
-            #("MSE_P", "0"),
+            ("MSE_P", "0"),
             #("Phi-DIV_P", "CHI_SQUARED"),
             #("Phi-DIV_P", "KL"),
             #("Phi-DIV_P", "SQUARED_HELLINGER"),
@@ -314,7 +314,7 @@ if __name__ == "__main__":
     """
     Change the filename before running a simulation to prevent overwriting previous results.
     """
-    filename = "payments-vs-mse_filename"
+    filename = "payments-vs-mse_mse-p"
     
     """
     The function below runs the experiment.

@@ -178,13 +178,13 @@ def run_simulation(num_semesters, num_assignments, strategy_map, strat, mechanis
                     mu = 7
                     gamma = 1/2.1
                     
-                    mse_p_mechanism(grader_dict, students, assignment, mu, gamma, True)
+                    mse_p_mechanism(grader_dict, students, assignment, mu, gamma, True, False)
                     
                 elif mechanism == "Phi-DIV_P":
                     mu = 7
                     gamma = 1/2.1
                     
-                    parametric_phi_divergence_pairing_mechanism(grader_dict, students, assignment, mu, gamma, True, mechanism_param)
+                    parametric_phi_divergence_pairing_mechanism(grader_dict, students, assignment, mu, gamma, False, mechanism_param)
                     
                 else:
                     print("Error: The given mechanism name does not match any of the options.")
@@ -364,11 +364,11 @@ if __name__ == "__main__":
             
             #PARAMETRIC MECHANISMS
             
-            #("MSE_P", "0"),
-            #("Phi-DIV_P", "CHI_SQUARED"),
-            #("Phi-DIV_P", "KL"),
-            #("Phi-DIV_P", "SQUARED_HELLINGER"),
-            #("Phi-DIV_P", "TVD"),
+            ("MSE_P", "0"),
+            ("Phi-DIV_P", "CHI_SQUARED"),
+            ("Phi-DIV_P", "KL"),
+            ("Phi-DIV_P", "SQUARED_HELLINGER"),
+            ("Phi-DIV_P", "TVD"),
             
         ]
     
@@ -378,22 +378,20 @@ if __name__ == "__main__":
     
     strategies = [
                         
-            #"NOISE",
-            #"FIX-BIAS",
-            #"MERGE",
-            #"PRIOR", 
-            #"ALL10", 
-            #"HEDGE"
+            "NOISE",
+            "FIX-BIAS",
+            "MERGE",
+            "PRIOR", 
+            "ALL10", 
+            "HEDGE"
         ]
     
     """
     Change the filename before running a simulation to prevent overwriting previous results.
     """
-    filename = "incentives_for_deviating-ce-bias-filename"
+    filename = "incentives_for_deviating-ce-bias-parametric-bias_correct_false"
     
     """
     The function below runs the experiment.
     """
     simulate(strategies, mechanisms, filename)
-    
-    

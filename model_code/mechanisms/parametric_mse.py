@@ -10,7 +10,7 @@ import numpy as np
 from sklearn.metrics import mean_squared_error as mse
 from scipy.stats import gamma as gamma_distribution    
 
-def mse_p_mechanism(grader_dict, student_list, assignment_num, mu, gamma, bias=True):
+def mse_p_mechanism(grader_dict, student_list, assignment_num, mu, gamma, bias=True, bias_correct=False):
     """
     Computes payments for students according to the MSE_P mechanism.   
     
@@ -55,7 +55,10 @@ def mse_p_mechanism(grader_dict, student_list, assignment_num, mu, gamma, bias=T
             tasks = []
             reports = []
             ground_truth = []
-            b = biases[student.id]
+            if bias_correct:
+                b = biases[student.id]
+            else:
+                b = 0
             
             for task, report in student.grades[assignment_num].items():
                 tasks.append(task)

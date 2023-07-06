@@ -115,7 +115,7 @@ def run_simulation(num_iterations, num_assignments, strategy_map, mechanism, mec
                 mu = 7
                 gamma = 1/2.1
                 
-                mse_p_mechanism(grader_dict, students, assignment, mu, gamma, True)
+                mse_p_mechanism(grader_dict, students, assignment, mu, gamma, True, True)
                 
             elif mechanism == "Phi-DIV_P":
                 mu = 7

@@ -297,7 +297,7 @@ def estimate_pairwise_scoring_matrices(grader_dict, phi_divergence="TVD"):
     
     return A, B, S_A, S_B
 
-def parametric_phi_divergence_pairing_mechanism(grader_dict, student_list, assignment_num, mu, gamma, bias=True, phi_divergence="TVD"):
+def parametric_phi_divergence_pairing_mechanism(grader_dict, student_list, assignment_num, mu, gamma, bias_correct=True, phi_divergence="TVD"):
     """
     Computes payments for students according to the parametric Phi-Divergence pairing mechanism, using parametric model estimates for the joint-to-marginal product ratio.
     
@@ -344,12 +344,12 @@ def parametric_phi_divergence_pairing_mechanism(grader_dict, student_list, assig
     
     minsize = -maxsize - 1
     
-    biases, reliability, scores, iteration = em_estimate_parameters(grader_dict, student_list, assignment_num, mu, gamma, bias)
-    
-    if not iteration < 1000:
-        print("EM estimation procedure did not converge.")
-        biases = {student.id: 0 for student in student_list}
-        reliability = {student.id: 0 for student in student_list}
+    if bias_correct:
+        biases, reliability, scores, iteration = em_estimate_parameters(grader_dict, student_list, assignment_num, mu, gamma, include_bias=True)
+        if not iteration < 1000:
+            print("EM estimation procedure did not converge.")
+            biases = {student.id: 0 for student in student_list}
+            reliability = {student.id: 0 for student in student_list}
     
     for submission, graders in grader_dict.items():
         
@@ -380,10 +380,21 @@ def parametric_phi_divergence_pairing_mechanism(grader_dict, student_list, assig
             one = pair[0]
             two = pair[1]
             
-            tau_1, tau_2 = regularize_reliability(reliability[one.id], reliability[two.id])
+            if bias_correct:
+                unregularized_tau_1 = reliability[one.id]
+                unregularized_tau_2 = reliability[two.id]
+            else:
+                unregularized_tau_1 = 1/0.7
+                unregularized_tau_2 = 1/0.7
             
-            b_1 = biases[one.id]
-            b_2 = biases[two.id]
+            tau_1, tau_2 = regularize_reliability(unregularized_tau_1, unregularized_tau_2)
+            
+            if bias_correct:
+                b_1 = biases[one.id]
+                b_2 = biases[two.id]
+            else:
+                b_1 = 0
+                b_2 = 0
             
             bonus_one_grade = one.grades[assignment][bonus]
             bonus_two_grade = two.grades[assignment][bonus]
@@ -711,7 +722,7 @@ def regularize_reliability(rel_1, rel_2):
     """
     
     val = 1/0.7
-    #val = 1/1.05
+    # val = 1/1.05
     
     p = 0.00
     
