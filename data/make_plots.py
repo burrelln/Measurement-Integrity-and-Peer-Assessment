@@ -76,17 +76,17 @@ def compare_metrics(metric):
     guarantee_color_map = {key:cm[i] for i, key in enumerate(guarantee_value_map.keys())}
     
     json_data = {}
-    filename = 'payments-vs-mse_best_with-bias-in-model'
+    filename = 'payments-vs-mse_with-bias-in-model'
     json_file = filename + '.json'
     with open(json_file,"r") as file:
         d = load(file)
-        json_data.update(d)
+    json_data.update(d)
         
-    filename = 'payments-vs-mse_other_with-bias-in-model'
+    filename = 'payments-vs-mse_mse-p' 
     json_file = filename + '.json'
     with open(json_file,"r") as file:
         d = load(file)
-        json_data.update(d)
+    json_data.update(d) # Update to use up-to-date MSE_P data (improved estimate of consensus grade)
         
     json_data.pop("DMI: 4")
     
@@ -97,41 +97,78 @@ def compare_metrics(metric):
         value = mean(values)
         tau_accuracy_dict[mechanism] = {"ABM": value}
         
-    json_data = {}
-    filename = 'payments-vs-mse_Spring17-MLE-repeated'
+    filename = 'payments-vs-mse_Spring17_mse-p'
+    json_file = filename + '.json'
+    with open(json_file,"r") as file:
+        msep_d = load(file)
+    
+    filename = 'payments-vs-mse_Spring17_full'
     json_file = filename + '.json'
     with open(json_file,"r") as file:
         d = load(file)
-        json_data.update(d)
+        #json_data.update(d)
+        #print(json_data)
         for key, nums in d.items():
             json_data[key] = {}
-            for num in nums.keys():
-                json_data[key][num] = {metric: []}
-                json_data[key][num][metric].append(mean(nums[num][metric]))
-        
-    filename = 'payments-vs-mse_Fall17-MLE-repeated'
+            if key == 'MSE_P: 0':
+                for num in nums.keys():
+                    json_data[key][num] = {metric: []}
+                    json_data[key][num][metric].append(mean(msep_d[key][num][metric]))
+            else:
+                for num in nums.keys():
+                    json_data[key][num] = {metric: []}
+                    json_data[key][num][metric].append(mean(nums[num][metric]))
+                    
+    filename = 'payments-vs-mse_Fall17_mse-p'
+    json_file = filename + '.json'
+    with open(json_file,"r") as file:
+        msep_d = load(file)
+               
+    filename = 'payments-vs-mse_Fall17_full'
     json_file = filename + '.json'
     with open(json_file,"r") as file:
         d = load(file)
         for key, nums in d.items():
-            for num in nums.keys():
-                json_data[key][num][metric].append(mean(nums[num][metric]))
+            if key == 'MSE_P: 0':
+                for num in nums.keys():
+                    json_data[key][num][metric].append(mean(msep_d[key][num][metric]))
+            else:
+                for num in nums.keys():
+                    json_data[key][num][metric].append(mean(nums[num][metric]))
     
-    filename = 'payments-vs-mse_Spring19-MLE-repeated'
+    filename = 'payments-vs-mse_Spring19_mse-p'
+    json_file = filename + '.json'
+    with open(json_file,"r") as file:
+        msep_d = load(file)
+    
+    filename = 'payments-vs-mse_Spring19_full'
     json_file = filename + '.json'
     with open(json_file,"r") as file:
         d = load(file)
         for key, nums in d.items():
-            for num in nums.keys():
-                json_data[key][num][metric].append(mean(nums[num][metric]))
-                
-    filename = 'payments-vs-mse_Fall19-MLE-repeated'
+            if key == 'MSE_P: 0':
+                for num in nums.keys():
+                    json_data[key][num][metric].append(mean(msep_d[key][num][metric]))
+            else:
+                for num in nums.keys():
+                    json_data[key][num][metric].append(mean(nums[num][metric]))
+    
+    filename = 'payments-vs-mse_Fall19_mse-p'
+    json_file = filename + '.json'
+    with open(json_file,"r") as file:
+        msep_d = load(file)
+    
+    filename = 'payments-vs-mse_Fall19_full'
     json_file = filename + '.json'
     with open(json_file,"r") as file:
         d = load(file)
         for key, nums in d.items():
-            for num in nums.keys():
-                json_data[key][num][metric].append(mean(nums[num][metric]))
+            if key == 'MSE_P: 0':
+                for num in nums.keys():
+                    json_data[key][num][metric].append(mean(msep_d[key][num][metric]))
+            else:
+                for num in nums.keys():
+                    json_data[key][num][metric].append(mean(nums[num][metric]))
     
     for mechanism in data["Mechanism"]:
         key = old_names[mechanism]
@@ -191,6 +228,11 @@ def compare_metrics_max_min_mean(metric):
       
     json_data = {}
     
+    filename = 'payments-vs-mse_Spring17_mse-p'
+    json_file = filename + '.json'
+    with open(json_file,"r") as file:
+        msep_d = load(file)
+    
     filename = 'payments-vs-mse_Spring17_full'
     json_file = filename + '.json'
     with open(json_file,"r") as file:
@@ -199,40 +241,69 @@ def compare_metrics_max_min_mean(metric):
         #print(json_data)
         for key, nums in d.items():
             json_data[key] = {}
-            for num in nums.keys():
-                json_data[key][num] = {metric: []}
-                json_data[key][num][metric].append(mean(nums[num][metric]))
+            if key == 'MSE_P: 0':
+                for num in nums.keys():
+                    json_data[key][num] = {metric: []}
+                    json_data[key][num][metric].append(mean(msep_d[key][num][metric]))
+            else:
+                for num in nums.keys():
+                    json_data[key][num] = {metric: []}
+                    json_data[key][num][metric].append(mean(nums[num][metric]))
+                    
+    filename = 'payments-vs-mse_Fall17_mse-p'
+    json_file = filename + '.json'
+    with open(json_file,"r") as file:
+        msep_d = load(file)
                
     filename = 'payments-vs-mse_Fall17_full'
     json_file = filename + '.json'
     with open(json_file,"r") as file:
         d = load(file)
         for key, nums in d.items():
-            for num in nums.keys():
-                json_data[key][num][metric].append(mean(nums[num][metric]))
+            if key == 'MSE_P: 0':
+                for num in nums.keys():
+                    json_data[key][num][metric].append(mean(msep_d[key][num][metric]))
+            else:
+                for num in nums.keys():
+                    json_data[key][num][metric].append(mean(nums[num][metric]))
+    
+    filename = 'payments-vs-mse_Spring19_mse-p'
+    json_file = filename + '.json'
+    with open(json_file,"r") as file:
+        msep_d = load(file)
     
     filename = 'payments-vs-mse_Spring19_full'
     json_file = filename + '.json'
     with open(json_file,"r") as file:
         d = load(file)
         for key, nums in d.items():
-            for num in nums.keys():
-                json_data[key][num][metric].append(mean(nums[num][metric]))
+            if key == 'MSE_P: 0':
+                for num in nums.keys():
+                    json_data[key][num][metric].append(mean(msep_d[key][num][metric]))
+            else:
+                for num in nums.keys():
+                    json_data[key][num][metric].append(mean(nums[num][metric]))
+    
+    filename = 'payments-vs-mse_Fall19_mse-p'
+    json_file = filename + '.json'
+    with open(json_file,"r") as file:
+        msep_d = load(file)
     
     filename = 'payments-vs-mse_Fall19_full'
     json_file = filename + '.json'
     with open(json_file,"r") as file:
         d = load(file)
         for key, nums in d.items():
-            for num in nums.keys():
-                json_data[key][num][metric].append(mean(nums[num][metric]))
-    
-    #print(json.dumps(json_data, indent=2))
+            if key == 'MSE_P: 0':
+                for num in nums.keys():
+                    json_data[key][num][metric].append(mean(msep_d[key][num][metric]))
+            else:
+                for num in nums.keys():
+                    json_data[key][num][metric].append(mean(nums[num][metric]))
     
     for mechanism in data["Mechanism"]:
         key = old_names[mechanism]
         arr = np.array([json_data[key][str(num)][metric] for num in range(1, 5)])
-        #print(arr)
         values = []
         for i in range(4):
             values.append(mean(arr[:,i]))
@@ -362,6 +433,15 @@ def figure_1a(poster_version=False):
     with open(json_file,"r") as file:
         d = load(file)
         json_data.update(d)
+        
+    filename = 'incentives_for_deviating-ce-bias-parametric-bias_correct_false'
+    json_file = filename + '.json'
+    with open(json_file,"r") as file:
+        d = load(file)
+    for strategy in d.keys():
+        for num in d[strategy].keys():
+            json_data[strategy][num].update(d[strategy][num])
+    
     
     for mechanism in data["Mechanism"]:
         key = old_names[mechanism]
@@ -458,7 +538,7 @@ def figure_1a(poster_version=False):
         
         # order = [0,4,2,3,5,1] # When Informed Truthful is included (6 labels)
         order=[0,3,1,2] # When Informed Truthful is not included
-        plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], title=r'Equilibrium Concept', loc='upper center')
+        plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], title=r'Equilibrium Concept', loc='upper right', bbox_to_anchor=(1.005, 1.02))
         
         # label points on the plot
         for x, y, s in zip(data["Robustness"], data["Accuracy"], data["Mechanism"]):
@@ -467,27 +547,27 @@ def figure_1a(poster_version=False):
                 y_val = y - 0.03
                 
             elif s == r'MSE':
-                x_val = x - 1.6
-                y_val = y - 0.03
+                x_val = x - 1.4
+                y_val = y - 0.035
                 
             elif s == r'PTS':
                 x_val = x - 1.35
                 y_val = y + 0.015
                 
             elif s == r'OA':
-                x_val = x - 1.11
+                x_val = x - 0.75
                 y_val = y + 0.015
                 
             elif s == r'$\Phi$-Div: $H^2$':
-                x_val = x - 2.25
+                x_val = x - 2
                 y_val = y - 0.03
                 
             elif s == r'$\Phi$-Div: KL':
-                x_val = x - 2.25
+                x_val = x - 2
                 y_val = y + 0.015
                 
             elif s == r'$\Phi$-Div$_P$: TVD':
-                x_val = x - 6.5
+                x_val = x - 5.5
                 y_val = y + 0.015
                 
             elif s == r'$\Phi$-Div$_P$: KL' or s == r'$\Phi$-Div$_P$: $\chi^2$' or s == r'$\Phi$-Div$_P$: $H^2$':
@@ -515,8 +595,9 @@ def figure_1a(poster_version=False):
         ax.set_xlabel(r'Robustness Against Strategic Reporting')
         plt.title(r'Apparent Trade-off Between Integrity and Robustness (ABM)')
         plt.tight_layout()
-        filename = "2D-tradeoff"
+        filename = "2D-tradeoff-updated-strategic"
         figure_file = "figures/main_paper/" + filename + ".pdf"
+        # figure_file = "figures/poster/" + filename + ".png"
         plt.savefig(figure_file, dpi=300)
         plt.show()
         plt.close()
@@ -599,15 +680,33 @@ def figure_1b():
     with open('individual-robustness_Fall19_full.json', 'r') as file:
         results4 = load(file)
         
+    with open('individual-robustness_Spring17_parametric-bias_correct_false.json', 'r') as file:
+        results1p = load(file)
+        
+    with open('individual-robustness_Fall17_parametric-bias_correct_false.json', 'r') as file:
+        results2p = load(file)
+        
+    with open('individual-robustness_Spring19_parametric-bias_correct_false.json', 'r') as file:
+        results3p = load(file)
+        
+    with open('individual-robustness_Fall19_parametric-bias_correct_false.json', 'r') as file:
+        results4p = load(file)
+        
     for name, formatted_name in mechanism_name_map.items():
         if name == "DMI: 4" or name[:2] == "SC":
             continue
         m_list = []
         for strategy in strategies:
-            v1 = results1[strategy]["1"][name]["Mean Gain"]
-            v2 = results2[strategy]["1"][name]["Mean Gain"]
-            v3 = results3[strategy]["1"][name]["Mean Gain"]
-            v4 = results4[strategy]["1"][name]["Mean Gain"]
+            if name in ["MSE_P: 0", "Phi-DIV_P: CHI_SQUARED", "Phi-DIV_P: KL", "Phi-DIV_P: SQUARED_HELLINGER", "Phi-DIV_P: TVD"]:
+                v1 = results1p[strategy]["1"][name]["Mean Gain"]
+                v2 = results2p[strategy]["1"][name]["Mean Gain"]
+                v3 = results3p[strategy]["1"][name]["Mean Gain"]
+                v4 = results4p[strategy]["1"][name]["Mean Gain"]
+            else:
+                v1 = results1[strategy]["1"][name]["Mean Gain"]
+                v2 = results2[strategy]["1"][name]["Mean Gain"]
+                v3 = results3[strategy]["1"][name]["Mean Gain"]
+                v4 = results4[strategy]["1"][name]["Mean Gain"]
             m_list += [v1, v2, v3, v4]
         s17 = mean([m_list[0], m_list[4], m_list[8], m_list[12]])
         f17 = mean([m_list[1], m_list[5], m_list[9], m_list[13]])
@@ -658,7 +757,7 @@ def figure_1b():
     
     # order = [0,4,2,3,5,1] # When Informed Truthful is included (6 labels)
     order=[0,3,1,2] # When Informed Truthful is not included
-    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], title=r'Equilibrium Concept', loc='upper right')
+    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], title=r'Equilibrium Concept', loc='upper right', bbox_to_anchor=(1.005, 1.02))
     
     
     #ax.errorbar(data["Robustness"], data["Accuracy"], yerr=[data["ymin"], data["ymax"]], xerr=[data["xmin"], data["xmax"]], fmt='')
@@ -671,23 +770,23 @@ def figure_1b():
             
         elif s == r'MSE$_P$':
             x_val = x - 1.5
-            y_val = y - 0.03
+            y_val = y + 0.015
             
         elif s == r'$\Phi$-Div$_P$: $H^2$':
             x_val = x - 3.5
             y_val = y + 0.02
             
         elif s == r'$\Phi$-Div$_P$: KL':
-            x_val = x - 3.5
-            y_val = y - 0.03
+            x_val = x - 4
+            y_val = y - 0.025
             
         elif s == r'$\Phi$-Div: KL':
-            x_val = x - 3.5
-            y_val = y - 0.03
+            x_val = x - 3.25
+            y_val = y - 0.035
             
         elif s == r'$\Phi$-Div: $H^2$':
-            x_val = x - 3.5
-            y_val = y + 0.02
+            x_val = x - 3.25
+            y_val = y + 0.0225
         
         elif s == r'$\Phi$-Div$_P$: TVD':
             x_val = x - 3.5
@@ -698,8 +797,8 @@ def figure_1b():
             y_val = y + 0.0175
             
         elif s == r'$\Phi$-Div$_P$: $\chi^2$':
-            x_val = x - 3.5
-            y_val = y + 0.02
+            x_val = x - 3.0
+            y_val = y + 0.015
             
         elif s == r'$\Phi$-Div: $\chi^2$':
             x_val = x - 3.5
@@ -736,8 +835,9 @@ def figure_1b():
     ax.set_xlabel(r'Robustness Against Strategic Reporting')
     plt.title(r'Apparent Trade-off Between Integrity and Robustness (Real Data)')
     plt.tight_layout()
-    filename = "2D-tradeoff-real"
+    filename = "2D-tradeoff-real-updated-strategic"
     figure_file = "figures/main_paper/" + filename + ".pdf"
+    # figure_file = "figures/poster/" + filename + ".png"
     plt.savefig(figure_file, dpi=300)
     plt.show()
     plt.close()
@@ -747,6 +847,7 @@ def figure_2():
     filename = 'payments-vs-mse_mse-p'
     json_file = filename + '.json'
     pdf_file = 'main_paper/mi_mse_metrics_with_bias_no-dmi_updated'
+    # pdf_file = 'poster/mi_mse_metrics_with_bias_no-dmi_updated'
     with open(json_file,"r") as file:
         more_data = load(file)
     
@@ -780,58 +881,74 @@ def figures_4_and_F_2a_and_F_2b():
     appendix_file = f'appendix/{filename}-mean_gain'
     with open(json_file,"r") as file:
         data = load(file)
+    filename = 'incentives_for_deviating-ce-bias-parametric-bias_correct_false'
+    json_file = filename + '.json'
+    with open(json_file,"r") as file:
+        d = load(file)
+    for strategy in d.keys():
+        for num in d[strategy].keys():
+            data[strategy][num].update(d[strategy][num])    
+    
     plot_mean_rank_changes(data, main_file, main=True, appendix=False)
     
-    with open(json_file,"r") as file:
-        data = load(file)
     plot_mean_rank_changes(data, appendix_file, main=False, appendix=True)
     
-    appendix_file = f'appendix/{filename}-variance_gain'
-    with open(json_file,"r") as file:
-        data = load(file)
     plot_variance_rank_changes(data, appendix_file)
 
 def figures_5_and_F_2d_and_F_2e():
-    f1 = 'individual-robustness_Spring17_full'
-    f2 = 'individual-robustness_Fall17_full'
-    f3 = 'individual-robustness_Spring19_full'
-    f4 = 'individual-robustness_Fall19_full'
-    j1 = f1 + '.json'
-    j2 = f2 + '.json'
-    j3 = f3 + '.json'
-    j4 = f4 + '.json'
+    f1 = 'individual-robustness_Spring17'
+    f2 = 'individual-robustness_Fall17'
+    f3 = 'individual-robustness_Spring19'
+    f4 = 'individual-robustness_Fall19'
+    j1 = f1 + '_full.json'
+    j2 = f2 + '_full.json'
+    j3 = f3 + '_full.json'
+    j4 = f4 + '_full.json'
+    j1p = f1 + '_parametric-bias_correct_false.json'
+    j2p = f2 + '_parametric-bias_correct_false.json'
+    j3p = f3 + '_parametric-bias_correct_false.json'
+    j4p = f4 + '_parametric-bias_correct_false.json'
     
-    main_file = f'main_paper/incentives-for-deviating-real'
-    appendix_file = f'appendix/incentives-for-deviating-real'
+    
+    
+    main_file = f'main_paper/incentives-for-deviating-real-bias-correct'
+    appendix_file = f'appendix/incentives-for-deviating-real-bias-correct'
     with open(j1, "r") as file:
         d1 = load(file)
+    with open(j1p,"r") as file:
+        d = load(file)
+    for strategy in d.keys():
+        for num in d[strategy].keys():
+            d1[strategy][num].update(d[strategy][num])
+        
     with open(j2, "r") as file:
         d2 = load(file)
+    with open(j2p,"r") as file:
+        d = load(file)
+    for strategy in d.keys():
+        for num in d[strategy].keys():
+            d2[strategy][num].update(d[strategy][num])
+            
     with open(j3, "r") as file:
         d3 = load(file)
+    with open(j3p,"r") as file:
+        d = load(file)
+    for strategy in d.keys():
+        for num in d[strategy].keys():
+            d3[strategy][num].update(d[strategy][num])
+            
     with open(j4, "r") as file:
         d4 = load(file)
+    with open(j4p,"r") as file:
+        d = load(file)
+    for strategy in d.keys():
+        for num in d[strategy].keys():
+            d4[strategy][num].update(d[strategy][num])
+        
     plot_mean_rank_changes_real_data(d1, d2, d3, d4, main_file, main=True, appendix=False)
     
-    with open(j1, "r") as file:
-        d1 = load(file)
-    with open(j2, "r") as file:
-        d2 = load(file)
-    with open(j3, "r") as file:
-        d3 = load(file)
-    with open(j4, "r") as file:
-        d4 = load(file)
     plot_mean_rank_changes_real_data(d1, d2, d3, d4, appendix_file, main=False, appendix=True)
     
-    appendix_file = f'appendix/incentives-for-deviating-real'
-    with open(j1, "r") as file:
-        d1 = load(file)
-    with open(j2, "r") as file:
-        d2 = load(file)
-    with open(j3, "r") as file:
-        d3 = load(file)
-    with open(j4, "r") as file:
-        d4 = load(file)
     plot_variance_rank_changes_real_data(d1, d2, d3, d4, appendix_file)
 
 def figure_D_1a():
@@ -1049,6 +1166,194 @@ def figure_D_1a():
     plt.savefig(figure_file, dpi=300)
     plt.show()
     plt.close()
+    
+def figure_D_1a_bias_correction():
+    old_names = {value:key for key,value in mechanism_name_map.items()}
+        
+    data = {
+            "Mechanism": 
+                [
+                    # Non-Parametric Mechanisms
+                    r'MSE',
+                    #r'DMI', 
+                    r'OA',
+                    r'$\Phi$-Div: $\chi^2$',
+                    r'$\Phi$-Div: KL',
+                    r'$\Phi$-Div: $H^2$',
+                    r'$\Phi$-Div: TVD',
+                    r'PTS',
+                    # Parametric Mechanisms
+                    r'MSE$_P$',
+                    r'$\Phi$-Div$_P$: $\chi^2$',
+                    r'$\Phi$-Div$_P$: KL',
+                    r'$\Phi$-Div$_P$: $H^2$',
+                    r'$\Phi$-Div$_P$: TVD'
+                ],
+            "Theoretical Guarantee":
+                [
+                    # Non-Parametric Mechanisms
+                    r'None',
+                    #r'Dominantly Truthful',
+                    r'Truthful',             
+                    r'$\epsilon$-Strongly Truthful',  
+                    r'$\epsilon$-Strongly Truthful',
+                    r'$\epsilon$-Strongly Truthful', 
+                    r'$\epsilon$-Strongly Truthful',  
+                    r'Helpful Reporting',
+                    # Parametric Mechanisms
+                    r'None',
+                    r'$\epsilon$-Strongly Truthful',  
+                    r'$\epsilon$-Strongly Truthful',
+                    r'$\epsilon$-Strongly Truthful', 
+                    r'$\epsilon$-Strongly Truthful',
+                ],
+            "Mechanism Type":
+                [
+                    # Non-Parametric Mechanisms
+                    r'Non-Parametric',
+                    #r'Non-Parametric',
+                    r'Non-Parametric',
+                    r'Non-Parametric',
+                    r'Non-Parametric',
+                    r'Non-Parametric',
+                    r'Non-Parametric',
+                    r'Non-Parametric',
+                    # Parametric Mechanisms
+                    r'Parametric',
+                    r'Parametric',
+                    r'Parametric',
+                    r'Parametric',
+                    r'Parametric',
+                ]
+        }
+        
+    guarantee_value_map = {
+            "None": 0,
+            "Helpful Reporting": 1,
+            "Truthful": 2,
+            "Informed Truthful": 3,
+            r'$\epsilon$-Strongly Truthful': 4,
+            #"Dominantly Truthful": 5
+        }
+    
+    cm = sns.color_palette("magma")
+    guarantee_color_map = {key:cm[i] for i, key in enumerate(guarantee_value_map.keys())}
+    
+    json_data = {}
+    filename = 'payments-vs-mse_with-bias-in-model'
+    json_file = filename + '.json'
+    with open(json_file,"r") as file:
+        d = load(file)
+    json_data.update(d)
+        
+    json_data.pop("DMI: 4")
+    
+    filename = 'payments-vs-mse_parametric' 
+    json_file = filename + '.json'
+    with open(json_file,"r") as file:
+        d = load(file)
+    json_data.update(d) # Update to bias-corrected values
+            
+    be_accuracy_list = []
+    for mechanism in data["Mechanism"]:
+        key = old_names[mechanism]
+        values = [mean(json_data[key][str(num)]["Taus"]) for num in range(1, 16)]
+        value = mean(values) # transform to correlation function
+        be_accuracy_list.append(value)
+        
+    data["Accuracy"] = be_accuracy_list
+    
+    robustness_list = []
+    strategies = [
+                    "NOISE",
+                    "FIX-BIAS",
+                    "MERGE",
+                    "PRIOR", 
+                    "ALL10", 
+                    "HEDGE"
+                ]
+    
+    json_data = {}
+        
+    filename = 'incentives_for_deviating-ce-bias'
+    json_file = filename + '.json'
+    with open(json_file,"r") as file:
+        d = load(file)
+        json_data.update(d)
+    
+    for mechanism in data["Mechanism"]:
+        key = old_names[mechanism]
+        values = [-1*json_data[strategy][str(num)][key]["Mean Gain"] for strategy in strategies for num in range(10, 100, 10)]
+        value = mean(values)
+        robustness_list.append(value)
+        
+    data["Robustness"] = robustness_list
+    
+    _ = sns.scatterplot(x="Robustness", y="Accuracy", hue="Theoretical Guarantee", palette=guarantee_color_map, data=data)
+    handles, labels = plt.gca().get_legend_handles_labels()
+    
+    # order = [0,4,2,3,5,1] # When Informed Truthful is included (6 labels)
+    order=[0,3,1,2] # When Informed Truthful is not included
+    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], title=r'Equilibrium Concept', loc='upper center')
+    
+    # label points on the plot
+    for x, y, s in zip(data["Robustness"], data["Accuracy"], data["Mechanism"]):
+        if s == r'MSE$_P$':
+            x_val = x + 1
+            y_val = y - 0.005
+            
+        elif s == r'MSE':
+            x_val = x - 1.5
+            y_val = y - 0.0375
+            
+        elif s == r'PTS':
+            x_val = x - 1.35
+            y_val = y + 0.015
+            
+        elif s == r'OA':
+            x_val = x - 0.8
+            y_val = y + 0.02
+            
+        elif s == r'$\Phi$-Div: $H^2$':
+            x_val = x - 2
+            y_val = y - 0.035
+            
+        elif s == r'$\Phi$-Div: KL':
+            x_val = x - 2
+            y_val = y + 0.02
+            
+        elif s == r'$\Phi$-Div$_P$: TVD':
+            x_val = x - 6.5
+            y_val = y + 0.015
+            
+        elif s == r'$\Phi$-Div$_P$: KL' or s == r'$\Phi$-Div$_P$: $\chi^2$' or s == r'$\Phi$-Div$_P$: $H^2$':
+            x_val = x - 4
+            y_val = y + 0.025
+            
+        else:
+            x_val = x - 3.5
+            y_val = y + 0.02
+            
+        plt.text(x = x_val, # x-coordinate position of data label
+        y = y_val, # y-coordinate position of data label
+        s = s, # data label
+        color = 'black') # set colour of line
+    
+    ax = plt.gca()
+    # Hide the right and top spines
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)    
+    ax.set_facecolor('gainsboro')
+    
+    ax.set_ylabel(r'Ordinal Measurement Integrity')
+    ax.set_xlabel(r'Robustness Against Strategic Reporting')
+    plt.title(r'Apparent Trade-off Between Integrity and Robustness (with Parametric Bias Correction)')
+    plt.tight_layout()
+    filename = "2D-tradeoff-bias-correction"
+    figure_file = "figures/main_paper/" + filename + ".pdf"
+    plt.savefig(figure_file, dpi=300)
+    plt.show()
+    plt.close()
 
 def figure_E_1a():
     
@@ -1214,11 +1519,11 @@ if __name__ == "__main__":
 
     # figure_1a(True)
 
-    # figure_1a(False)
+    figure_1a(False)
     
-    # figure_1b()
+    figure_1b()
     
-    # figure_2()
+    figure_2()
     
     # figures_3_and_F_1a()
     
@@ -1227,6 +1532,8 @@ if __name__ == "__main__":
     # figures_5_and_F_2d_and_F_2e()
     
     # figure_D_1a()
+    
+    # figure_D_1a_bias_correction()
     
     # figure_E_1a()
     
@@ -1247,6 +1554,7 @@ if __name__ == "__main__":
     # metric = "Binary AUCs"
     # metric = "Taus"
     # metric = "Rhos"
+    # print(metric)
     
     # d = compare_metrics(metric)
     # l = [(key, val["Real"]) for key, val in d.items()]

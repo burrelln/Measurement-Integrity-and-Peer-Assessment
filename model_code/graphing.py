@@ -1038,6 +1038,7 @@ def plot_mi_mse_metrics_highlighted_no_dmi(results, filename):
         ax.set_xlabel(r'Number of Assignments Per Semester')
         plt.tight_layout()
         figure_file = "figures/" + filename + "-" + metrics_code[metric] + ".pdf"
+        # figure_file = "figures/" + filename + "-" + metrics_code[metric] +".png"
         plt.savefig(figure_file, dpi=300)
         plt.show()
         plt.close()
