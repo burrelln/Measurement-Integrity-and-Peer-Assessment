@@ -320,7 +320,7 @@ def simulate(mechanisms, filename, semester, coarsen):
     
     results = compare_mechanisms_varying_num_assignments(assignments, mechanisms, semester, coarsen) 
     
-    json_file = "results/" + filename + ".json"
+    json_file = "../results/" + filename + ".json"
     
     """
     Export JSON file of simulation data to results directory

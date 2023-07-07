@@ -355,12 +355,12 @@ def simulate(strategies, mechanisms, filename, semester, coarsen):
         
         results[strategy] = result
         
-        json_file = "results/" + filename + strategy + ".json"
+        json_file = "../results/" + filename + strategy + ".json"
         
         with open(json_file, 'w', encoding='utf-8') as f:
             json.dump(result, f, ensure_ascii=False, indent=4)
         
-    json_file_all = "results/" + filename + ".json"
+    json_file_all = "../results/" + filename + ".json"
     
     """
     Export JSON file of simulation data to results directory
