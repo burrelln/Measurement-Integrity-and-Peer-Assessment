@@ -1,6 +1,8 @@
 # Measurement-Integrity-and-Peer-Assessment
 
-This repo contains the implementation of an Agent-Based Model (ABM) of peer assessment that was used to conduct the experiments in the paper "Measurement Integrity in Peer Prediction: A Peer Assessment Case Study" (Burrell and Schoenebeck, 2021). 
+NOTE: Repo is currently under constructon. With new experimental results being incorporated into the paper, the code here will need to be updated and cleaned up.
+
+This repo contains the implementation of an Agent-Based Model (ABM) of peer assessment that was used to conduct the experiments in the paper "Measurement Integrity in Peer Prediction: A Peer Assessment Case Study" (Burrell and Schoenebeck, 2023). 
 
 See the paper ([arXiv:2108.05521](https://arxiv.org/abs/2108.05521)) for more details about the model and the experiments that were conducted.
 
